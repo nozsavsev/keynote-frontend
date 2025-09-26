@@ -1,0 +1,48 @@
+.DS_Store
+*.pem
+*.key
+*.ps1
+# Log files
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+.pnpm-debug.log*
+
+# Editor directories and files
+.idea
+.vscode
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Output of 'npm pack'
+*.tgz
+
+# Yarn Integrity file
+.yarn-integrity
+
+# dotenv environment variables file
+.env
+.env.development.local
+.env.test.local
+.env.production.local
+
+# parcel-bundler cache files
+.cache
+
+# Next.js build folder
+.next
+
+# node module
+node_modules
+
+# misc
+Nauth.yaml
+openapitools.json
+.yarn
+.pnp.cjs
+.pnp.loader.mjs
+README.md

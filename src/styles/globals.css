@@ -1,0 +1,105 @@
+@import "tailwindcss";
+
+@theme {
+  /* Core semantic colors (dark theme) */
+  --color-background: #0a0a0a;
+  --color-foreground: #fafafa;
+  
+  /* Primary brand colors */
+  --color-primary: #fafafa;
+  --color-primary-foreground: #171717;
+  
+  /* Secondary colors */
+  --color-secondary: #262626;
+  --color-secondary-foreground: #fafafa;
+  
+  /* Accent colors */
+  --color-accent: #262626;
+  --color-accent-foreground: #fafafa;
+  
+  /* Muted colors */
+  --color-muted: #262626;
+  --color-muted-foreground: #a3a3a3;
+  
+  /* State colors */
+  --color-destructive: #dc2626;
+  --color-destructive-foreground: #fafafa;
+  --color-success: #16a34a;
+  --color-success-foreground: #fafafa;
+  --color-warning: #d97706;
+  --color-warning-foreground: #fafafa;
+  --color-info: #2563eb;
+  --color-info-foreground: #fafafa;
+  
+  /* Card colors */
+  --color-card: #0a0a0a;
+  --color-card-foreground: #fafafa;
+  
+  /* Popover colors */
+  --color-popover: #0a0a0a;
+  --color-popover-foreground: #fafafa;
+  
+  /* Border and input colors */
+  --color-border: #262626;
+  --color-input: #262626;
+  --color-ring: #d4d4d4;
+  
+  /* Chart colors */
+  --color-chart-1: #ef4444;
+  --color-chart-2: #22c55e;
+  --color-chart-3: #3b82f6;
+  --color-chart-4: #f59e0b;
+  --color-chart-5: #8b5cf6;
+  
+  /* Sidebar colors */
+  --color-sidebar: #0a0a0a;
+  --color-sidebar-foreground: #fafafa;
+  --color-sidebar-primary: #fafafa;
+  --color-sidebar-primary-foreground: #171717;
+  --color-sidebar-accent: #262626;
+  --color-sidebar-accent-foreground: #fafafa;
+  --color-sidebar-border: #262626;
+  --color-sidebar-ring: #d4d4d4;
+}
+
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+Hebrew:wdth,wght@62.5..100,100..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+Hebrew:wght@100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+@import "tw-animate-css";
+
+body {
+  font-family: "Inter", "Noto Sans Hebrew";
+  background-color: var(--color-background);
+  color: var(--color-foreground);
+}
+
+.inter {
+  font-family: "Inter", "Noto Sans Hebrew";
+}
+
+
+button {
+  cursor: pointer;
+}
+
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
+
+body::-webkit-scrollbar {
+  display: none;
+}
+
+.scrollHide::-webkit-scrollbar {
+  display: none;
+}

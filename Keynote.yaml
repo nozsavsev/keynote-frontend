@@ -1,0 +1,657 @@
+openapi: 3.0.4
+info:
+  title: ketnote-asp
+  version: '1.0'
+paths:
+  /api/Keynote/createKeynote:
+    post:
+      tags:
+        - Keynote
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                Keynote:
+                  type: string
+                  format: binary
+                MobileKeynote:
+                  type: string
+                  format: binary
+                PresentorNotes:
+                  type: string
+                  format: binary
+                TransitionType:
+                  $ref: '#/components/schemas/KeynoteTransitionType'
+                Type:
+                  $ref: '#/components/schemas/KeynoteType'
+                TotalFrames:
+                  type: integer
+                  format: int32
+                Name:
+                  type: string
+                Description:
+                  type: string
+            encoding:
+              Keynote:
+                style: form
+              MobileKeynote:
+                style: form
+              PresentorNotes:
+                style: form
+              TransitionType:
+                style: form
+              Type:
+                style: form
+              TotalFrames:
+                style: form
+              Name:
+                style: form
+              Description:
+                style: form
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/KeynoteDTOResponseWrapper'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/KeynoteDTOResponseWrapper'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/KeynoteDTOResponseWrapper'
+  /api/Keynote/deleteKeynote:
+    delete:
+      tags:
+        - Keynote
+      parameters:
+        - name: keynoteId
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/StringResponseWrapper'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StringResponseWrapper'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/StringResponseWrapper'
+  /api/Session/GetScreenSession:
+    get:
+      tags:
+        - Session
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: string
+            application/json:
+              schema:
+                type: string
+            text/json:
+              schema:
+                type: string
+  /api/Session/GetSpectatorSession:
+    get:
+      tags:
+        - Session
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: string
+            application/json:
+              schema:
+                type: string
+            text/json:
+              schema:
+                type: string
+  /Status:
+    get:
+      tags:
+        - Status
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/StringResponseWrapper'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StringResponseWrapper'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/StringResponseWrapper'
+  /api/SwaggerDto/room-dtos:
+    get:
+      tags:
+        - SwaggerDto
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/RoomDtosResponseResponseWrapper'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RoomDtosResponseResponseWrapper'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/RoomDtosResponseResponseWrapper'
+  /api/SwaggerDto/keynote-dtos:
+    get:
+      tags:
+        - SwaggerDto
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/KeynoteDtosResponse'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/KeynoteDtosResponse'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/KeynoteDtosResponse'
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/KeynoteDtosResponseResponseWrapper'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/KeynoteDtosResponseResponseWrapper'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/KeynoteDtosResponseResponseWrapper'
+  /api/SwaggerDto/enums:
+    get:
+      tags:
+        - SwaggerDto
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EnumsResponse'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/EnumsResponse'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/EnumsResponse'
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/EnumsResponseResponseWrapper'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EnumsResponseResponseWrapper'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/EnumsResponseResponseWrapper'
+  /api/SwaggerDto/list-dtos:
+    get:
+      tags:
+        - SwaggerDto
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ListDtosResponse'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/ListDtosResponse'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/ListDtosResponse'
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/ListDtosResponseResponseWrapper'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListDtosResponseResponseWrapper'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/ListDtosResponseResponseWrapper'
+  /api/User/currentUser:
+    get:
+      tags:
+        - User
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/KeynoteUserDTOResponseWrapper'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/KeynoteUserDTOResponseWrapper'
+            text/json:
+              schema:
+                $ref: '#/components/schemas/KeynoteUserDTOResponseWrapper'
+components:
+  schemas:
+    AuthFailureReasons:
+      enum:
+        - SessionExpired
+        - _2FARequired
+        - RequireVerifiedEmail
+        - RequireEnabledUser
+        - Require2FASetup
+        - ForeginResource
+        - PrManageUsers
+        - PrManageOwnServices
+        - PrManageServices
+        - PrManageEmailTemplates
+        - PrUploadFiles
+        - PrAdminManageKeynotes
+      type: string
+    CreateKeynoteDTO:
+      type: object
+      properties:
+        keynote:
+          type: string
+          format: binary
+          nullable: true
+        mobileKeynote:
+          type: string
+          format: binary
+          nullable: true
+        presentorNotes:
+          type: string
+          format: binary
+          nullable: true
+        transitionType:
+          $ref: '#/components/schemas/KeynoteTransitionType'
+        type:
+          $ref: '#/components/schemas/KeynoteType'
+        totalFrames:
+          type: integer
+          format: int32
+        name:
+          type: string
+          nullable: true
+        description:
+          type: string
+          nullable: true
+      additionalProperties: false
+    DB_Keynote:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        transitionType:
+          $ref: '#/components/schemas/KeynoteTransitionType'
+        type:
+          $ref: '#/components/schemas/KeynoteType'
+        totalFrames:
+          type: integer
+          format: int32
+        keynoteUrl:
+          type: string
+          nullable: true
+        mobileKeynoteUrl:
+          type: string
+          nullable: true
+        presentorNotesUrl:
+          type: string
+          nullable: true
+        name:
+          type: string
+          nullable: true
+        description:
+          type: string
+          nullable: true
+        createdAt:
+          type: string
+          format: date-time
+        userId:
+          type: integer
+          format: int64
+        user:
+          $ref: '#/components/schemas/DB_User'
+      additionalProperties: false
+    DB_User:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        keynotes:
+          type: array
+          items:
+            $ref: '#/components/schemas/DB_Keynote'
+          nullable: true
+      additionalProperties: false
+    EnumsResponse:
+      type: object
+      properties:
+        authFailureReasons:
+          $ref: '#/components/schemas/AuthFailureReasons'
+        wrResponseStatus:
+          $ref: '#/components/schemas/WrResponseStatus'
+        keynoteTransitionType:
+          $ref: '#/components/schemas/KeynoteTransitionType'
+        keynoteType:
+          $ref: '#/components/schemas/KeynoteType'
+      additionalProperties: false
+    EnumsResponseResponseWrapper:
+      type: object
+      properties:
+        status:
+          $ref: '#/components/schemas/WrResponseStatus'
+        authenticationFailureReasons:
+          type: array
+          items:
+            $ref: '#/components/schemas/AuthFailureReasons'
+          nullable: true
+        response:
+          $ref: '#/components/schemas/EnumsResponse'
+      additionalProperties: false
+    KeynoteDTO:
+      type: object
+      properties:
+        id:
+          type: string
+          nullable: true
+        transitionType:
+          $ref: '#/components/schemas/KeynoteTransitionType'
+        type:
+          $ref: '#/components/schemas/KeynoteType'
+        totalFrames:
+          type: integer
+          format: int32
+        keynoteUrl:
+          type: string
+          nullable: true
+        mobileKeynoteUrl:
+          type: string
+          nullable: true
+        presentorNotesUrl:
+          type: string
+          nullable: true
+        name:
+          type: string
+          nullable: true
+        description:
+          type: string
+          nullable: true
+        createdAt:
+          type: string
+          format: date-time
+        userId:
+          type: string
+          nullable: true
+      additionalProperties: false
+    KeynoteDTOResponseWrapper:
+      type: object
+      properties:
+        status:
+          $ref: '#/components/schemas/WrResponseStatus'
+        authenticationFailureReasons:
+          type: array
+          items:
+            $ref: '#/components/schemas/AuthFailureReasons'
+          nullable: true
+        response:
+          $ref: '#/components/schemas/KeynoteDTO'
+      additionalProperties: false
+    KeynoteDtosResponse:
+      type: object
+      properties:
+        keynote:
+          $ref: '#/components/schemas/KeynoteDTO'
+        createKeynote:
+          $ref: '#/components/schemas/CreateKeynoteDTO'
+        keynoteUser:
+          $ref: '#/components/schemas/KeynoteUserDTO'
+      additionalProperties: false
+    KeynoteDtosResponseResponseWrapper:
+      type: object
+      properties:
+        status:
+          $ref: '#/components/schemas/WrResponseStatus'
+        authenticationFailureReasons:
+          type: array
+          items:
+            $ref: '#/components/schemas/AuthFailureReasons'
+          nullable: true
+        response:
+          $ref: '#/components/schemas/KeynoteDtosResponse'
+      additionalProperties: false
+    KeynoteTransitionType:
+      enum:
+        - none
+      type: string
+    KeynoteType:
+      enum:
+        - Pdf
+      type: string
+    KeynoteUserDTO:
+      type: object
+      properties:
+        id:
+          type: string
+          nullable: true
+        keynotes:
+          type: array
+          items:
+            $ref: '#/components/schemas/KeynoteDTO'
+          nullable: true
+      additionalProperties: false
+    KeynoteUserDTOResponseWrapper:
+      type: object
+      properties:
+        status:
+          $ref: '#/components/schemas/WrResponseStatus'
+        authenticationFailureReasons:
+          type: array
+          items:
+            $ref: '#/components/schemas/AuthFailureReasons'
+          nullable: true
+        response:
+          $ref: '#/components/schemas/KeynoteUserDTO'
+      additionalProperties: false
+    ListDtosResponse:
+      type: object
+      properties:
+        roomList:
+          type: array
+          items:
+            $ref: '#/components/schemas/TR_RoomDTO'
+          nullable: true
+        presentorList:
+          type: array
+          items:
+            $ref: '#/components/schemas/TR_PresentorDTO'
+          nullable: true
+        screenList:
+          type: array
+          items:
+            $ref: '#/components/schemas/TR_ScreenDTO'
+          nullable: true
+        spectatorList:
+          type: array
+          items:
+            $ref: '#/components/schemas/TR_SpectatorDTO'
+          nullable: true
+        keynoteList:
+          type: array
+          items:
+            $ref: '#/components/schemas/KeynoteDTO'
+          nullable: true
+      additionalProperties: false
+    ListDtosResponseResponseWrapper:
+      type: object
+      properties:
+        status:
+          $ref: '#/components/schemas/WrResponseStatus'
+        authenticationFailureReasons:
+          type: array
+          items:
+            $ref: '#/components/schemas/AuthFailureReasons'
+          nullable: true
+        response:
+          $ref: '#/components/schemas/ListDtosResponse'
+      additionalProperties: false
+    RoomDtosResponse:
+      type: object
+      properties:
+        room:
+          $ref: '#/components/schemas/TR_RoomDTO'
+        presentor:
+          $ref: '#/components/schemas/TR_PresentorDTO'
+        screen:
+          $ref: '#/components/schemas/TR_ScreenDTO'
+        spectator:
+          $ref: '#/components/schemas/TR_SpectatorDTO'
+        baseEntity:
+          $ref: '#/components/schemas/TR_BaseEntityDTO'
+      additionalProperties: false
+    RoomDtosResponseResponseWrapper:
+      type: object
+      properties:
+        status:
+          $ref: '#/components/schemas/WrResponseStatus'
+        authenticationFailureReasons:
+          type: array
+          items:
+            $ref: '#/components/schemas/AuthFailureReasons'
+          nullable: true
+        response:
+          $ref: '#/components/schemas/RoomDtosResponse'
+      additionalProperties: false
+    StringResponseWrapper:
+      type: object
+      properties:
+        status:
+          $ref: '#/components/schemas/WrResponseStatus'
+        authenticationFailureReasons:
+          type: array
+          items:
+            $ref: '#/components/schemas/AuthFailureReasons'
+          nullable: true
+        response:
+          type: string
+          nullable: true
+      additionalProperties: false
+    TR_BaseEntityDTO:
+      type: object
+      properties:
+        identifier:
+          type: string
+          nullable: true
+        roomCode:
+          type: string
+          nullable: true
+      additionalProperties: false
+    TR_PresentorDTO:
+      type: object
+      properties:
+        identifier:
+          type: string
+          nullable: true
+        roomCode:
+          type: string
+          nullable: true
+        name:
+          type: string
+          nullable: true
+      additionalProperties: false
+    TR_RoomDTO:
+      type: object
+      properties:
+        identifier:
+          type: string
+          nullable: true
+        roomCode:
+          type: string
+          nullable: true
+        keynote:
+          $ref: '#/components/schemas/DB_Keynote'
+        currentFrame:
+          type: integer
+          format: int32
+        showSpectatorQR:
+          type: boolean
+        tempControlSpectatorId:
+          type: string
+          nullable: true
+        presentor:
+          $ref: '#/components/schemas/TR_PresentorDTO'
+        screen:
+          $ref: '#/components/schemas/TR_ScreenDTO'
+        spectators:
+          type: array
+          items:
+            $ref: '#/components/schemas/TR_SpectatorDTO'
+          nullable: true
+      additionalProperties: false
+    TR_ScreenDTO:
+      type: object
+      properties:
+        identifier:
+          type: string
+          nullable: true
+        roomCode:
+          type: string
+          nullable: true
+      additionalProperties: false
+    TR_SpectatorDTO:
+      type: object
+      properties:
+        identifier:
+          type: string
+          nullable: true
+        roomCode:
+          type: string
+          nullable: true
+        name:
+          type: string
+          nullable: true
+        isHandRaised:
+          type: boolean
+      additionalProperties: false
+    WrResponseStatus:
+      enum:
+        - InternalError
+        - Ok
+        - Forbidden
+        - _2FARequired
+        - Unauthorized
+        - NotFound
+        - BadRequest
+        - Cooldown
+        - ServerDown
+        - EmailNotAvailable
+        - InvalidEmail
+        - InvalidPassword
+        - RequireEnabledUser
+        - InvalidApplyToken
+      type: string
