@@ -20,7 +20,8 @@ RUN \
 FROM base AS builder
 WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
-COPY package.json biome.json components.json next-env.d.ts next.config.ts postcss.config.mjs tailwindcss.config.js tsconfig.json ./
+COPY package.json biome.json components.json next.config.ts postcss.config.mjs tailwindcss.config.js tsconfig.json ./
+COPY next-env.d.ts ./
 COPY public ./public
 COPY src ./src
 
@@ -28,7 +29,7 @@ COPY src ./src
 # Learn more here: https://nextjs.org/telemetry
 # Uncomment the following line in case you want to disable telemetry during the build.
 
-ENV NEXT_TELEMETRY_DISABLED 1
+ENV NEXT_TELEMETRY_DISABLED=1
 RUN --mount=type=cache,target=/app/.next/cache yarn build
 
 # If using npm comment out above and use below instead
@@ -38,7 +39,7 @@ RUN --mount=type=cache,target=/app/.next/cache yarn build
 FROM base AS runner
 WORKDIR /app
 
-ENV NODE_ENV production
+ENV NODE_ENV=production
 # Uncomment the following line in case you want to disable telemetry during runtime.
 # ENV NEXT_TELEMETRY_DISABLED 1
 
@@ -56,6 +57,6 @@ USER nextjs
 
 EXPOSE 3000
 
-ENV PORT 3000
+ENV PORT=3000
 
 CMD ["node", "server.js"]
