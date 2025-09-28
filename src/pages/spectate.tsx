@@ -11,10 +11,25 @@ import { faker } from "@faker-js/faker";
 import dynamic from "next/dynamic";
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/router";
-import { ArrowLeftIcon, ArrowRightIcon, Check, CrossIcon, Hand, Pencil, Presentation, RotateCcw, Trash, Users, X } from "lucide-react";
+import {
+  ArrowLeftIcon,
+  ArrowRightIcon,
+  Check,
+  CrossIcon,
+  Eye,
+  EyeClosed,
+  Hand,
+  Pencil,
+  Presentation,
+  RotateCcw,
+  Trash,
+  Users,
+  X,
+} from "lucide-react";
 import { Input } from "@/components/ui/input";
 import useKeynoteUser from "@/hooks/keynote/useKeynoteUser";
 import { InputOTP, InputOTPGroup, InputOTPSlot, InputOTPSeparator } from "@/components/ui/input-otp";
+import SpectatorNotes from "@/components/spectator/SpectatorNotes";
 
 const QrScanner = dynamic(() => import("@/components/QrScanner"), { ssr: false });
 
@@ -80,6 +95,8 @@ export default observer(() => {
 const Spectating = observer(() => {
   const spectator = useSpectatorHub();
 
+  const [controlsHidden, setControlsHidden] = useState(false);
+
   return (
     <motion.div
       key="presenting"
@@ -89,12 +106,37 @@ const Spectating = observer(() => {
       transition={{ duration: 0.3 }}
       className="relative flex h-full w-full flex-col items-center justify-start pt-8"
     >
-      <SpectatorNameOverlay />
-      <ScreenAndAudienceOverlay />
-      <SlideControlverlay />
+      <SpectatorNameOverlay controlsHidden={controlsHidden} />
+      <ScreenAndAudienceOverlay controlsHidden={controlsHidden} />
+      <SlideControlverlay controlsHidden={controlsHidden} />
+      <HideControlsOverlay controlsHidden={controlsHidden} setControlsHidden={setControlsHidden} />
+
+      <SpectatorNotes
+        _keynoteUrl={spectator.currentRoom?.keynote?.keynoteUrl}
+        _mobileKeynoteUrl={spectator.currentRoom?.keynote?.mobileKeynoteUrl}
+        currentFrame={spectator.currentRoom?.currentFrame ?? 1}
+        totalFrames={spectator.currentRoom?.keynote?.totalFrames ?? 1}
+      />
     </motion.div>
   );
 });
+
+const HideControlsOverlay = observer(
+  ({ controlsHidden, setControlsHidden }: { controlsHidden: boolean; setControlsHidden: (controlsHidden: boolean) => void }) => {
+    return (
+      <motion.div
+        key="hide-controls-overlay"
+        initial={{ opacity: 1, y: 100 }}
+        animate={{ opacity: 1, y: 0 }}
+        exit={{ opacity: 1, y: 100 }}
+        transition={{ duration: 0.3 }}
+        className="bg-background/50 absolute right-8 bottom-7 z-50 flex items-center justify-center rounded-lg p-2 backdrop-blur-lg"
+      >
+        <button onClick={() => setControlsHidden(!controlsHidden)}>{controlsHidden ? <EyeClosed /> : <Eye />}</button>
+      </motion.div>
+    );
+  },
+);
 
 const FloatingLogo = observer(() => {
   return (
@@ -278,13 +320,13 @@ const ClaimScreenOverlay = observer(({ onClose }: { onClose: (connect: boolean) 
   );
 });
 
-const SpectatorNameOverlay = observer(() => {
+const SpectatorNameOverlay = observer(({ controlsHidden }: { controlsHidden: boolean }) => {
   const spectator = useSpectatorHub();
   const [isEditing, setIsEditing] = useState(false);
   const [tempName, setTempName] = useState(spectator.me?.name ?? "");
 
   useEffect(() => {
-    if(spectator.me?.name?.length == 0){
+    if (spectator.me?.name?.length == 0) {
       setIsEditing(true);
       const nm = faker.person.fullName();
       spectator.SetName(nm);
@@ -296,7 +338,7 @@ const SpectatorNameOverlay = observer(() => {
     <motion.div
       key="keynote-select"
       initial={{ opacity: 0, y: -100 }}
-      animate={{ opacity: 1, y: 0 }}
+      animate={{ opacity: 1, y: controlsHidden ? -100 : 0 }}
       exit={{ opacity: 0, y: -100 }}
       transition={{ duration: 0.3 }}
       className="bg-background absolute top-6 z-40 mx-auto flex flex-col items-start justify-center rounded-lg px-4 py-2"
@@ -352,14 +394,14 @@ const SpectatorNameOverlay = observer(() => {
   );
 });
 
-const ScreenAndAudienceOverlay = observer(() => {
+const ScreenAndAudienceOverlay = observer(({ controlsHidden }: { controlsHidden: boolean }) => {
   const spectator = useSpectatorHub();
 
   return (
     <motion.div
       key="screen-status-overlay"
       initial={{ opacity: 0, y: 100 }}
-      animate={{ opacity: 1, y: 0 }}
+      animate={{ opacity: 1, y: controlsHidden ? 100 : 0 }}
       exit={{ opacity: 0, y: 100 }}
       transition={{ duration: 0.3 }}
       className="bg-background absolute bottom-6 z-40 mx-auto flex items-center justify-between rounded-lg px-2 py-2"
@@ -375,28 +417,29 @@ const ScreenAndAudienceOverlay = observer(() => {
         onClick={() => spectator.SetHandRaised(!spectator.me?.isHandRaised)}
       >
         {spectator.me?.isHandRaised ? "Lower Hand" : "Raise Hand"}
-      </Button>{" "}
+      </Button>
     </motion.div>
   );
 });
 
-const SlideControlverlay = observer(() => {
+const SlideControlverlay = observer(({ controlsHidden }: { controlsHidden: boolean }) => {
   const spectator = useSpectatorHub();
 
   return (
     <motion.div
       key="screen-status-overlay"
       initial={{ opacity: 0, y: 200 }}
-      animate={{ opacity: 1, y: spectator.currentRoom?.keynote != null && spectator.currentRoom?.tempControlSpectatorId == spectator.me?.identifier ? 0 : 200 }}
+      animate={{
+        opacity: 1,
+        y: spectator.currentRoom?.keynote != null && spectator.currentRoom?.tempControlSpectatorId == spectator.me?.identifier ? 0 : 200,
+      }}
       exit={{ opacity: 0, y: 200 }}
       transition={{ duration: 0.3 }}
       className="bg-background absolute bottom-20 z-40 mx-auto flex items-center justify-between gap-4 rounded-lg px-2 py-2"
     >
       <button
         onClick={async () => {
-
           const targetFrame = spectator.currentRoom?.currentFrame! - 1;
-
 
           await spectator.SetPage(Math.max(targetFrame, 1));
         }}
@@ -404,9 +447,7 @@ const SlideControlverlay = observer(() => {
         <ArrowLeftIcon size={32} />
       </button>
 
-      <div
-        className={`text-lg font-semibold text-white`}
-      >
+      <div className={`text-lg font-semibold text-white`}>
         {spectator.currentRoom?.currentFrame!} / {spectator.currentRoom?.keynote?.totalFrames}
       </div>
 

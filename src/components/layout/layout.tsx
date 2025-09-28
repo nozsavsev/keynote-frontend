@@ -22,7 +22,7 @@ const Layout = observer(({ children }: any) => {
   };
 
   const noWidth = () => {
-    return ["/screen", "/present", "/spectator"].filter((x) => router?.pathname?.startsWith(x)).length != 0 || router?.pathname?.endsWith("_preview");
+    return ["/screen", "/present", "/spectate"].filter((x) => router?.pathname?.startsWith(x)).length != 0 || router?.pathname?.endsWith("_preview");
   };
 
   const PresentorHub = usePresentorHub();
