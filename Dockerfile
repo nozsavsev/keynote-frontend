@@ -21,7 +21,6 @@ FROM base AS builder
 WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY package.json biome.json components.json next.config.ts postcss.config.mjs tailwindcss.config.js tsconfig.json ./
-COPY next-env.d.ts ./
 COPY public ./public
 COPY src ./src
 
