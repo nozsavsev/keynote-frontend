@@ -11,9 +11,10 @@ import { reaction } from "mobx";
 import dynamic from "next/dynamic";
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/router";
-import { ArrowLeftIcon, ArrowRightIcon, Check, CrossIcon, Hand, Pencil, Presentation, RotateCcw, Trash, Users, X } from "lucide-react";
+import { ArrowLeftIcon, ArrowRightIcon, Check, CrossIcon, Eye, EyeOff, Hand, Pencil, Presentation, RotateCcw, Trash, Users, X } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import useKeynoteUser from "@/hooks/keynote/useKeynoteUser";
+import PresenterNotes from "@/components/presenter/PresenterNotes";
 
 const QrScanner = dynamic(() => import("@/components/QrScanner"), { ssr: false });
 
@@ -84,8 +85,6 @@ const Presenting = observer(() => {
   const presentor = usePresentorHub();
   const currentPage = presentor.currentRoom?.currentFrame ?? 1;
 
-  const [ShowkeynoteSelect, setShowkeynoteSelect] = useState(presentor.currentRoom?.keynote == null);
-
   const handlePreviousSlide = async () => {
     if (currentPage > 1) {
       await presentor.SetPage(currentPage - 1);
@@ -122,10 +121,16 @@ const Presenting = observer(() => {
       className="relative flex h-full w-full flex-col items-center justify-start pt-8"
     >
       <PresentorNameOverlay />
-      <ScreenAndAudienceOverlay />
-      <SelectKeynoteOverlay />
-      <SlideControlverlay />
+      <ScreenAndAudienceOverlay  />
+      <SelectKeynoteOverlay      />
+      <SlideControlverlay      />
       <AudienceControlOverlay key="audience-control-overlay" />
+
+      <PresenterNotes
+        _presenterNotesUrl={presentor.currentRoom?.keynote?.presentorNotesUrl}
+        currentFrame={presentor.currentRoom?.currentFrame ?? 1}
+        totalFrames={presentor.currentRoom?.keynote?.totalFrames ?? 1}
+      />
     </motion.div>
   );
 });
@@ -604,7 +609,7 @@ const AudienceControlOverlay = observer(() => {
         key="select-audience-control-overlay"
         initial={{ opacity: 0 }}
         animate={{
-          opacity: presentor.currentRoom?.spectators?.some((spectator) => spectator.isHandRaised) ? 1 : 0,
+          opacity: (presentor.currentRoom?.spectators?.some((spectator) => spectator.isHandRaised) ? 1 : 0),
           y: presentor.currentRoom?.spectators?.some((spectator) => spectator.isHandRaised) ? 0 : 40,
           x: isExpanded ? 320 : 0,
         }}
@@ -617,3 +622,4 @@ const AudienceControlOverlay = observer(() => {
     </>
   );
 });
+
