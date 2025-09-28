@@ -169,7 +169,7 @@ const AppHead = () => (
 
 const AppToastContainer = () => (
   <ToastContainer
-    position="bottom-right"
+    position="bottom-center"
     autoClose={5000}
     hideProgressBar={false}
     newestOnTop={false}
@@ -233,6 +233,11 @@ const AppWithProviders = (props: AppPropsWithSSRUser) => {
   const keynoteUser = useKeynoteUserInternal({ 
     initialUser: props.pageProps.ssr_keynote_user ?? null 
   });
+
+  // Debug logging
+  console.log("AppWithProviders: nauthUser =", nauthUser);
+  console.log("AppWithProviders: keynoteUser =", keynoteUser);
+  console.log("AppWithProviders: keynoteUser.data =", keynoteUser.data);
 
   useDevConsoleWarning();
 

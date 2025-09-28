@@ -15,10 +15,8 @@ const Er_500 = ({}: any) => {
       async () => {
         var res = await KEYNOTE_API.Client.ServerStatus.Status();
 
-        console.log("Checking connection", res);
 
         if (res.status === "Ok") {
-          console.log("Connected");
           setIsConnected(true);
           setTimeout(async () => {
             router?.push(router?.query?.redirect?.toString() || "/");

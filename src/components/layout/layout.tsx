@@ -12,7 +12,7 @@ const Layout = observer(({ children }: any) => {
 
   const noNav = () => {
     return (
-      ["/test", "/_error", "/500", "/auth", "/403", "/404", "/select-branch"].filter((x) => router?.pathname?.startsWith(x)).length != 0 ||
+      ["/test", "/_error", "/500", "/auth", "/403", "/404", "/screen"].filter((x) => router?.pathname?.startsWith(x)).length != 0 ||
       router?.pathname?.endsWith("_preview")
     );
   };
@@ -21,14 +21,18 @@ const Layout = observer(({ children }: any) => {
     return ["/test"].filter((x) => router?.pathname?.startsWith(x)).length != 0 || router?.pathname?.endsWith("_preview");
   };
 
+  const noWidth = () => {
+    return ["/screen", "/present", "/spectator"].filter((x) => router?.pathname?.startsWith(x)).length != 0 || router?.pathname?.endsWith("_preview");
+  };
+
   const PresentorHub = usePresentorHub();
   const ScreenHub = useScreenHub();
   const SpectatorHub = useSpectatorHub();
 
   return (
     <>
-      {process.env.NODE_ENV == "development" && (
-        <div className="fixed bottom-10 right-10 z-[60] flex flex-col gap-2 items-start justify-start">
+      {process.env.NODE_ENV == "development" && false && (
+        <div className="fixed backdrop-blur-sm bg-background/50 rounded-md p-2 bottom-10 right-10 z-[60] flex flex-col gap-2 items-start justify-start">
           <div className="block sm:hidden">sm</div>
           <div className="hidden sm:block md:hidden">md</div>
           <div className="hidden md:block lg:hidden">lg</div>
@@ -57,13 +61,13 @@ const Layout = observer(({ children }: any) => {
           {!noNav() && <Navbar />}
           <div className={`m-0 w-full shrink-0 flex-grow p-0 ${noNav() ? "flex items-center justify-center" : ""}`}>
             <div
-              className={`${!noNav() ? "w-full" : ""} mx-auto flex flex-col`}
+              className={`${!noNav() ? "w-full" : "w-full"} mx-auto flex flex-col`}
               style={
                 noNav() && noFoot()
                   ? { minHeight: "100vh" }
                   : {
-                      maxWidth: router.asPath.startsWith("/admin") && !router.asPath.endsWith("preview") ? 1600 : 1200,
-                      minHeight: "calc(100vh - 64px)",
+                      maxWidth: (noNav() || noWidth()) ? 900000 :  (router.asPath.startsWith("/admin") && !router.asPath.endsWith("preview") ? 1600 : 1200),
+                      minHeight:noNav() ? '100vh' : "calc(100vh - 64px)",
                     }
               }
             >

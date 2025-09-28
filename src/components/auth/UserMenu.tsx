@@ -59,7 +59,6 @@ const GooglePopupLoginElement = () => {
       await NAUTH_API.Client.User.ContinueWithGoogle({
         googleAccessToken: credentialResponse.credential,
       }).then(async (res: any) => {
-        console.log(res);
         if (res.status == "Ok") {
           await refresh();
         }

@@ -88,19 +88,10 @@ export async function middleware(request: NextRequest) {
       useProcessEnv: true,
     });
 
-    console.log("fetched user:", JSON.stringify({
-      id: user_rsp.response?.id,
-      email: user_rsp.response?.email,
-      isEmailVerified: user_rsp.response?.isEmailVerified,
-      authFailureReasons: user_rsp.authenticationFailureReasons,
-      hasPermissions: !!user_rsp.response?.permissions?.length
-    }));
-
     if (user_rsp?.authenticationFailureReasons?.includes("_2FARequired")) {
       if (!pathname.startsWith("/auth/2FA")) {
         const redirectUrl = process.env.CURRENT_FRONTEND_BASE + pathname + request.nextUrl.search;
         const targetUrl = process.env.NAUTH_FRONTEND_BASE + "/auth/2FA?redirect=" + encodeURIComponent(redirectUrl);
-        console.log("redirecting to", targetUrl, "with back=", redirectUrl);
         return NextResponse.redirect(new URL(targetUrl, request.url));
       } else {
         return NextResponse.next();
@@ -121,7 +112,6 @@ export async function middleware(request: NextRequest) {
     if (permissonChecks.includes("loginRedirect")) {
       const redirectUrl = process.env.CURRENT_FRONTEND_BASE + pathname + request.nextUrl.search;
       const targetUrl = process.env.NAUTH_FRONTEND_BASE + "/auth/login?redirect=" + encodeURIComponent(redirectUrl);
-      console.log("redirecting to", targetUrl, "with back=", redirectUrl);
       return NextResponse.redirect(new URL(targetUrl, request.url));
     }
 
@@ -139,7 +129,6 @@ export async function middleware(request: NextRequest) {
 
         const redirectUrl = process.env.CURRENT_FRONTEND_BASE + pathname + request.nextUrl.search;
         const targetUrl = process.env.NAUTH_FRONTEND_BASE + `/auth/verificationExplainer?pageAccess=true&required=${failedPermissions?.join(",")}&redirect=` + encodeURIComponent(redirectUrl);
-        console.log("redirecting to", targetUrl, "with back=", redirectUrl);
         return NextResponse.rewrite(new URL(targetUrl, request.url));
       }
 

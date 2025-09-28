@@ -9,6 +9,8 @@ export class UserControllerClient {
   public async CurrentUser() {
     const api = this.getCurrentApi();
     const method = api.apiUserCurrentUserGet;
-    return await ExecuteApiRequest<typeof method>(method.bind(api), {});
+    var result = await ExecuteApiRequest<typeof method>(method.bind(api), {});
+    console.log("result", result);
+    return result;
   }
 }

@@ -1,5 +1,6 @@
 import { KEYNOTE_API } from "@/API/KEYNOTE/API";
-import { PresentorRT_HUB, ConnectionState } from "@/API/KEYNOTE/Realtime/PresentorRT_HUB";
+import { PresentorRT_HUB } from "@/API/KEYNOTE/Realtime/PresentorRT_HUB";
+import { ConnectionState } from "@/API/KEYNOTE/Realtime/HubBase";
 import { ScreenRT_HUB } from "@/API/KEYNOTE/Realtime/ScreenRT_HUB";
 import { SpectatorRT_HUB } from "@/API/KEYNOTE/Realtime/SpectatorRT_HUB";
 import { createContext, useContext, useEffect, useMemo } from "react";
@@ -36,7 +37,6 @@ const InnerKeynoteRealtime = ({ children }: { children: React.ReactNode }) => {
   // Connect SpectatorRT once on mount, no cleanup on navigation
   useEffect(() => {
     if (spectatorRT.connectionState === "disconnected") {
-      console.log("[KeynoteRealtime] Attempting to connect SpectatorRT");
       spectatorRT.connect().catch(console.error);
     }
     // No cleanup - keep connection alive during navigation
@@ -45,7 +45,6 @@ const InnerKeynoteRealtime = ({ children }: { children: React.ReactNode }) => {
   // Connect PresentorRT when user changes, no cleanup on navigation
   useEffect(() => {
     if (presentorRT.connectionState === "disconnected" && user) {
-      console.log("[KeynoteRealtime] Attempting to connect PresentorRT for user:", user.id);
       presentorRT.connect().catch(console.error);
     }
     // No cleanup - keep connection alive during navigation
@@ -54,7 +53,6 @@ const InnerKeynoteRealtime = ({ children }: { children: React.ReactNode }) => {
   // Connect ScreenRT once on mount, no cleanup on navigation
   useEffect(() => {
     if (screenRT.connectionState === "disconnected") {
-      console.log("[KeynoteRealtime] Attempting to connect ScreenRT");
       screenRT.connect().catch(console.error);
     }
     // No cleanup - keep connection alive during navigation

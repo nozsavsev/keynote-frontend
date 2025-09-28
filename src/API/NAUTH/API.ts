@@ -128,8 +128,6 @@ export const ExecuteApiRequest = async <T extends (...args: any[]) => any>(
         //process client only redirects
 
         if (payload.status === "Forbidden") {
-          console.log(payload);
-
           if (!window.location.pathname.includes("/auth/2FA") && payload?.authenticationFailureReasons?.includes("_2FARequired")) {
             const currentUrl = window.location.origin + window.location.pathname + window.location.search;
             window.location.href = new URL(`/auth/2FA?redirect=${encodeURIComponent(currentUrl)}`, AppENVConfig.NAUTH_FRONTEND_BASE).toString();

@@ -30,18 +30,15 @@ export class NauthRealtime {
   }
 
   @action public async onLogout() {
-    console.log("onLogout");
     //@ts-ignore
     if (!window.noLogoutRedirect) window.location.replace(new URL("/auth/revoked", AppENVConfig.NAUTH_FRONTEND_BASE).toString());
   }
 
   @action public async onDeleted() {
-    console.log("onDeleted");
     window.location.replace(new URL("/auth/deleted", AppENVConfig.NAUTH_FRONTEND_BASE).toString());
   }
 
   @action public async onRefreshData() {
-    console.log("onRefreshData");
     this.refreshData();
   }
 
