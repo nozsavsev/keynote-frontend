@@ -7,7 +7,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
 import QRCode from "react-qrcode-logo";
 import { reaction } from "mobx";
-
+import { faker } from "@faker-js/faker";
 import dynamic from "next/dynamic";
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/router";
@@ -280,8 +280,17 @@ const ClaimScreenOverlay = observer(({ onClose }: { onClose: (connect: boolean) 
 
 const SpectatorNameOverlay = observer(() => {
   const spectator = useSpectatorHub();
-  const [isEditing, setIsEditing] = useState(spectator.me?.name?.length == 0);
+  const [isEditing, setIsEditing] = useState(false);
   const [tempName, setTempName] = useState(spectator.me?.name ?? "");
+
+  useEffect(() => {
+    if(spectator.me?.name?.length == 0){
+      setIsEditing(true);
+      const nm = faker.person.fullName();
+      spectator.SetName(nm);
+      setTempName(nm);
+    }
+  }, [spectator.me?.name]);
 
   return (
     <motion.div

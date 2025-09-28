@@ -556,7 +556,7 @@ const AudienceControlOverlay = observer(() => {
           className="bg-background absolute top-96 left-0 z-40 flex max-h-80 min-h-80 w-80 flex-col gap-3 overflow-y-auto rounded-br-lg p-4"
         >
           <Button variant="outline" size="sm" onClick={() => presentor.SetShowSpectatorQR(!presentor.currentRoom?.showSpectatorQR)}>
-            Show QR
+             {presentor.currentRoom?.showSpectatorQR ? "Hide QR" : "Show QR"}
           </Button>
 
           <div>

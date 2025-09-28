@@ -10,6 +10,7 @@
     "format": "biome format --write"
   },
   "dependencies": {
+    "@faker-js/faker": "^10.0.0",
     "@headlessui/react": "^2.2.7",
     "@microsoft/signalr": "^9.0.6",
     "@next/bundle-analyzer": "^15.5.3",
