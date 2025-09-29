@@ -123,4 +123,4 @@ Keynote is built as a modern web application with the following architecture:
 - **NAUTH Backend**: [https://github.com/nozsavsev/nauth-asp](https://github.com/nozsavsev/nauth-asp) - Authentication and authorization microservice
 - **NAUTH Frontend**: [https://github.com/nozsavsev/nauth-frontend](https://github.com/nozsavsev/nauth-frontend) - Authentication service frontend
 
-© 2024 Keynote. All rights reserved.
+© 2024 Ilia Nozdrachev. All rights reserved.

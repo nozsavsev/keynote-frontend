@@ -55,7 +55,7 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="mt-4 flex opacity-70">© 2024 Keynote. All rights reserved.</div>
+        <div className="mt-4 flex opacity-70">© 2024 Ilia Nozdrachev. All rights reserved.</div>
       </div>
     </footer>
   );
