@@ -24,6 +24,8 @@ Keynote revolutionizes how presentations are delivered by providing real-time sy
 - **Raise Hand**: Audience members can raise hands for questions
 - **Temporary Control**: Grant audience members temporary presentation control
 - **Mobile Optimization**: Optimized viewing experience on mobile devices
+- **Mobile Presentation Version**: Spectators get a dedicated mobile-optimized presentation view
+- **Accessibility Features**: Spectators can switch to screen version for better visibility when needed
 
 ### Technical Capabilities
 
@@ -36,6 +38,7 @@ Keynote revolutionizes how presentations are delivered by providing real-time sy
 
 - **NAUTH Integration**: Secure authentication via NAUTH microservice
 - **Session Management**: Advanced session validation and management
+- **Unkillable Sessions**: Sessions persist across device reboots via secure cookies
 - **Permission System**: Fine-grained access control
 - **User Management**: Comprehensive user administration tools
 
@@ -44,6 +47,8 @@ Keynote revolutionizes how presentations are delivered by providing real-time sy
 1. **Upload & Connect**: Upload your PDF presentation and connect your screen or projector
 2. **Present & Control**: Control your presentation remotely from any device with real-time synchronization
 3. **Engage & Interact**: Audience members join on their devices, raise hands, and can request temporary control
+4. **Flexible Viewing**: Spectators can choose between mobile-optimized view or full screen version for optimal viewing experience
+5. **Persistent Experience**: Sessions automatically reconnect after device reboots - your presentation state is never lost
 
 ## Getting Started
 
