@@ -1,5 +1,9 @@
 # Keynote - Real-time PDF Presentation Platform
 
+<div align="center">
+  <img src="public/banner_dark.svg" alt="Keynote Banner" width="400" />
+</div>
+
 A modern, interactive presentation platform that transforms PDF presentations into engaging, real-time experiences. Built with Next.js, TypeScript, and integrated with NAUTH authentication system.
 
 ## Overview
