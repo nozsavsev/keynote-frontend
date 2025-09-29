@@ -24,11 +24,8 @@ const Footer = () => {
             <Link className="mx-2" href={"/"}>
               {"Home"}
             </Link>
-            <Link className="mx-2" href={"/legal"}>
-              {"Privacy Policy"}
-            </Link>
-            <Link className="mx-2" href={"/legal"}>
-              {"Terms of Service"}
+            <Link className="mx-2" href={"https://nozsa.com/legal"}>
+              {"Legal"}
             </Link>
           </div>
 
