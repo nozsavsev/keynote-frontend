@@ -344,17 +344,30 @@ export default function KeynoteManager() {
                         )}
                       </span>
                     </button>
-                    <button type="button" disabled={!keynote.mobileKeynoteUrl} onClick={() => window.open(keynote.mobileKeynoteUrl || "", "_blank")} className="flex items-center gap-2 text-xs" >
+                    <button
+                      type="button"
+                      disabled={!keynote.mobileKeynoteUrl}
+                      onClick={() => window.open(keynote.mobileKeynoteUrl || "", "_blank")}
+                      className="flex items-center gap-2 text-xs"
+                    >
                       <Smartphone className="h-3 w-3" />
                       <span className={keynote.mobileKeynoteUrl ? "text-green-600" : "text-muted-foreground"}>
-                        {keynote.mobileKeynoteUrl ?
-                         <span className="flex items-center gap-2">
-                          Mobile file uploaded
-                          <Link2 className="h-3 w-3" />
-                         </span> : "No mobile file"}
+                        {keynote.mobileKeynoteUrl ? (
+                          <span className="flex items-center gap-2">
+                            Mobile file uploaded
+                            <Link2 className="h-3 w-3" />
+                          </span>
+                        ) : (
+                          "No mobile file"
+                        )}
                       </span>
                     </button>
-                    <button type="button" disabled={!keynote.presentorNotesUrl} onClick={() => window.open(keynote.presentorNotesUrl || "", "_blank")} className="flex items-center gap-2 text-xs" >
+                    <button
+                      type="button"
+                      disabled={!keynote.presentorNotesUrl}
+                      onClick={() => window.open(keynote.presentorNotesUrl || "", "_blank")}
+                      className="flex items-center gap-2 text-xs"
+                    >
                       <Eye className="h-3 w-3" />
                       <span className={keynote.presentorNotesUrl ? "text-green-600" : "text-muted-foreground"}>
                         {keynote.presentorNotesUrl ? (
@@ -420,7 +433,7 @@ export default function KeynoteManager() {
               <div className="mt-1">
                 {state.parsingPDF ? (
                   <div className="bg-muted flex items-center gap-2 rounded-md p-3">
-                    <div className=" h-4 w-4 animate-spin rounded-full border-b-2"></div>
+                    <div className="h-4 w-4 animate-spin rounded-full border-b-2"></div>
                     <span className="text-muted-foreground text-sm">Analyzing PDF...</span>
                   </div>
                 ) : state.createForm.keynoteFile && (state.createForm.totalFrames || 0) > 0 ? (
@@ -428,7 +441,7 @@ export default function KeynoteManager() {
                     <div className="flex h-6 w-6 items-center justify-center rounded-full">
                       <span className="text-sm font-semibold text-green-600">{state.createForm.totalFrames || 0}</span>
                     </div>
-                    <span className="text-sm text-green-600 font-semibold">slides detected from {state.createForm.keynoteFile.name}</span>
+                    <span className="text-sm font-semibold text-green-600">slides detected from {state.createForm.keynoteFile.name}</span>
                   </div>
                 ) : (
                   <div className="bg-muted flex items-center gap-2 rounded-md p-3">

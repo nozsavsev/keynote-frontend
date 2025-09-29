@@ -1,7 +1,7 @@
 openapi: 3.0.4
 info:
   title: ketnote-asp
-  version: '1.0'
+  version: "1.0"
 paths:
   /api/Keynote/createKeynote:
     post:
@@ -23,9 +23,9 @@ paths:
                   type: string
                   format: binary
                 TransitionType:
-                  $ref: '#/components/schemas/KeynoteTransitionType'
+                  $ref: "#/components/schemas/KeynoteTransitionType"
                 Type:
-                  $ref: '#/components/schemas/KeynoteType'
+                  $ref: "#/components/schemas/KeynoteType"
                 TotalFrames:
                   type: integer
                   format: int32
@@ -51,18 +51,18 @@ paths:
               Description:
                 style: form
       responses:
-        '200':
+        "200":
           description: OK
           content:
             text/plain:
               schema:
-                $ref: '#/components/schemas/KeynoteDTOResponseWrapper'
+                $ref: "#/components/schemas/KeynoteDTOResponseWrapper"
             application/json:
               schema:
-                $ref: '#/components/schemas/KeynoteDTOResponseWrapper'
+                $ref: "#/components/schemas/KeynoteDTOResponseWrapper"
             text/json:
               schema:
-                $ref: '#/components/schemas/KeynoteDTOResponseWrapper'
+                $ref: "#/components/schemas/KeynoteDTOResponseWrapper"
   /api/Keynote/deleteKeynote:
     delete:
       tags:
@@ -73,24 +73,24 @@ paths:
           schema:
             type: string
       responses:
-        '200':
+        "200":
           description: OK
           content:
             text/plain:
               schema:
-                $ref: '#/components/schemas/StringResponseWrapper'
+                $ref: "#/components/schemas/StringResponseWrapper"
             application/json:
               schema:
-                $ref: '#/components/schemas/StringResponseWrapper'
+                $ref: "#/components/schemas/StringResponseWrapper"
             text/json:
               schema:
-                $ref: '#/components/schemas/StringResponseWrapper'
+                $ref: "#/components/schemas/StringResponseWrapper"
   /api/Session/GetScreenSession:
     get:
       tags:
         - Session
       responses:
-        '200':
+        "200":
           description: OK
           content:
             text/plain:
@@ -107,7 +107,7 @@ paths:
       tags:
         - Session
       responses:
-        '200':
+        "200":
           description: OK
           content:
             text/plain:
@@ -124,35 +124,35 @@ paths:
       tags:
         - Status
       responses:
-        '200':
+        "200":
           description: OK
           content:
             text/plain:
               schema:
-                $ref: '#/components/schemas/StringResponseWrapper'
+                $ref: "#/components/schemas/StringResponseWrapper"
             application/json:
               schema:
-                $ref: '#/components/schemas/StringResponseWrapper'
+                $ref: "#/components/schemas/StringResponseWrapper"
             text/json:
               schema:
-                $ref: '#/components/schemas/StringResponseWrapper'
+                $ref: "#/components/schemas/StringResponseWrapper"
   /api/SwaggerDto/room-dtos:
     get:
       tags:
         - SwaggerDto
       responses:
-        '200':
+        "200":
           description: OK
           content:
             text/plain:
               schema:
-                $ref: '#/components/schemas/RoomDtosResponseResponseWrapper'
+                $ref: "#/components/schemas/RoomDtosResponseResponseWrapper"
             application/json:
               schema:
-                $ref: '#/components/schemas/RoomDtosResponseResponseWrapper'
+                $ref: "#/components/schemas/RoomDtosResponseResponseWrapper"
             text/json:
               schema:
-                $ref: '#/components/schemas/RoomDtosResponseResponseWrapper'
+                $ref: "#/components/schemas/RoomDtosResponseResponseWrapper"
   /api/SwaggerDto/keynote-dtos:
     get:
       tags:
@@ -161,26 +161,26 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/KeynoteDtosResponse'
+              $ref: "#/components/schemas/KeynoteDtosResponse"
           text/json:
             schema:
-              $ref: '#/components/schemas/KeynoteDtosResponse'
+              $ref: "#/components/schemas/KeynoteDtosResponse"
           application/*+json:
             schema:
-              $ref: '#/components/schemas/KeynoteDtosResponse'
+              $ref: "#/components/schemas/KeynoteDtosResponse"
       responses:
-        '200':
+        "200":
           description: OK
           content:
             text/plain:
               schema:
-                $ref: '#/components/schemas/KeynoteDtosResponseResponseWrapper'
+                $ref: "#/components/schemas/KeynoteDtosResponseResponseWrapper"
             application/json:
               schema:
-                $ref: '#/components/schemas/KeynoteDtosResponseResponseWrapper'
+                $ref: "#/components/schemas/KeynoteDtosResponseResponseWrapper"
             text/json:
               schema:
-                $ref: '#/components/schemas/KeynoteDtosResponseResponseWrapper'
+                $ref: "#/components/schemas/KeynoteDtosResponseResponseWrapper"
   /api/SwaggerDto/enums:
     get:
       tags:
@@ -189,26 +189,26 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/EnumsResponse'
+              $ref: "#/components/schemas/EnumsResponse"
           text/json:
             schema:
-              $ref: '#/components/schemas/EnumsResponse'
+              $ref: "#/components/schemas/EnumsResponse"
           application/*+json:
             schema:
-              $ref: '#/components/schemas/EnumsResponse'
+              $ref: "#/components/schemas/EnumsResponse"
       responses:
-        '200':
+        "200":
           description: OK
           content:
             text/plain:
               schema:
-                $ref: '#/components/schemas/EnumsResponseResponseWrapper'
+                $ref: "#/components/schemas/EnumsResponseResponseWrapper"
             application/json:
               schema:
-                $ref: '#/components/schemas/EnumsResponseResponseWrapper'
+                $ref: "#/components/schemas/EnumsResponseResponseWrapper"
             text/json:
               schema:
-                $ref: '#/components/schemas/EnumsResponseResponseWrapper'
+                $ref: "#/components/schemas/EnumsResponseResponseWrapper"
   /api/SwaggerDto/list-dtos:
     get:
       tags:
@@ -217,43 +217,43 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/ListDtosResponse'
+              $ref: "#/components/schemas/ListDtosResponse"
           text/json:
             schema:
-              $ref: '#/components/schemas/ListDtosResponse'
+              $ref: "#/components/schemas/ListDtosResponse"
           application/*+json:
             schema:
-              $ref: '#/components/schemas/ListDtosResponse'
+              $ref: "#/components/schemas/ListDtosResponse"
       responses:
-        '200':
+        "200":
           description: OK
           content:
             text/plain:
               schema:
-                $ref: '#/components/schemas/ListDtosResponseResponseWrapper'
+                $ref: "#/components/schemas/ListDtosResponseResponseWrapper"
             application/json:
               schema:
-                $ref: '#/components/schemas/ListDtosResponseResponseWrapper'
+                $ref: "#/components/schemas/ListDtosResponseResponseWrapper"
             text/json:
               schema:
-                $ref: '#/components/schemas/ListDtosResponseResponseWrapper'
+                $ref: "#/components/schemas/ListDtosResponseResponseWrapper"
   /api/User/currentUser:
     get:
       tags:
         - User
       responses:
-        '200':
+        "200":
           description: OK
           content:
             text/plain:
               schema:
-                $ref: '#/components/schemas/KeynoteUserDTOResponseWrapper'
+                $ref: "#/components/schemas/KeynoteUserDTOResponseWrapper"
             application/json:
               schema:
-                $ref: '#/components/schemas/KeynoteUserDTOResponseWrapper'
+                $ref: "#/components/schemas/KeynoteUserDTOResponseWrapper"
             text/json:
               schema:
-                $ref: '#/components/schemas/KeynoteUserDTOResponseWrapper'
+                $ref: "#/components/schemas/KeynoteUserDTOResponseWrapper"
 components:
   schemas:
     AuthFailureReasons:
@@ -287,9 +287,9 @@ components:
           format: binary
           nullable: true
         transitionType:
-          $ref: '#/components/schemas/KeynoteTransitionType'
+          $ref: "#/components/schemas/KeynoteTransitionType"
         type:
-          $ref: '#/components/schemas/KeynoteType'
+          $ref: "#/components/schemas/KeynoteType"
         totalFrames:
           type: integer
           format: int32
@@ -307,9 +307,9 @@ components:
           type: integer
           format: int64
         transitionType:
-          $ref: '#/components/schemas/KeynoteTransitionType'
+          $ref: "#/components/schemas/KeynoteTransitionType"
         type:
-          $ref: '#/components/schemas/KeynoteType'
+          $ref: "#/components/schemas/KeynoteType"
         totalFrames:
           type: integer
           format: int32
@@ -335,7 +335,7 @@ components:
           type: integer
           format: int64
         user:
-          $ref: '#/components/schemas/DB_User'
+          $ref: "#/components/schemas/DB_User"
       additionalProperties: false
     DB_User:
       type: object
@@ -346,33 +346,33 @@ components:
         keynotes:
           type: array
           items:
-            $ref: '#/components/schemas/DB_Keynote'
+            $ref: "#/components/schemas/DB_Keynote"
           nullable: true
       additionalProperties: false
     EnumsResponse:
       type: object
       properties:
         authFailureReasons:
-          $ref: '#/components/schemas/AuthFailureReasons'
+          $ref: "#/components/schemas/AuthFailureReasons"
         wrResponseStatus:
-          $ref: '#/components/schemas/WrResponseStatus'
+          $ref: "#/components/schemas/WrResponseStatus"
         keynoteTransitionType:
-          $ref: '#/components/schemas/KeynoteTransitionType'
+          $ref: "#/components/schemas/KeynoteTransitionType"
         keynoteType:
-          $ref: '#/components/schemas/KeynoteType'
+          $ref: "#/components/schemas/KeynoteType"
       additionalProperties: false
     EnumsResponseResponseWrapper:
       type: object
       properties:
         status:
-          $ref: '#/components/schemas/WrResponseStatus'
+          $ref: "#/components/schemas/WrResponseStatus"
         authenticationFailureReasons:
           type: array
           items:
-            $ref: '#/components/schemas/AuthFailureReasons'
+            $ref: "#/components/schemas/AuthFailureReasons"
           nullable: true
         response:
-          $ref: '#/components/schemas/EnumsResponse'
+          $ref: "#/components/schemas/EnumsResponse"
       additionalProperties: false
     KeynoteDTO:
       type: object
@@ -381,9 +381,9 @@ components:
           type: string
           nullable: true
         transitionType:
-          $ref: '#/components/schemas/KeynoteTransitionType'
+          $ref: "#/components/schemas/KeynoteTransitionType"
         type:
-          $ref: '#/components/schemas/KeynoteType'
+          $ref: "#/components/schemas/KeynoteType"
         totalFrames:
           type: integer
           format: int32
@@ -413,37 +413,37 @@ components:
       type: object
       properties:
         status:
-          $ref: '#/components/schemas/WrResponseStatus'
+          $ref: "#/components/schemas/WrResponseStatus"
         authenticationFailureReasons:
           type: array
           items:
-            $ref: '#/components/schemas/AuthFailureReasons'
+            $ref: "#/components/schemas/AuthFailureReasons"
           nullable: true
         response:
-          $ref: '#/components/schemas/KeynoteDTO'
+          $ref: "#/components/schemas/KeynoteDTO"
       additionalProperties: false
     KeynoteDtosResponse:
       type: object
       properties:
         keynote:
-          $ref: '#/components/schemas/KeynoteDTO'
+          $ref: "#/components/schemas/KeynoteDTO"
         createKeynote:
-          $ref: '#/components/schemas/CreateKeynoteDTO'
+          $ref: "#/components/schemas/CreateKeynoteDTO"
         keynoteUser:
-          $ref: '#/components/schemas/KeynoteUserDTO'
+          $ref: "#/components/schemas/KeynoteUserDTO"
       additionalProperties: false
     KeynoteDtosResponseResponseWrapper:
       type: object
       properties:
         status:
-          $ref: '#/components/schemas/WrResponseStatus'
+          $ref: "#/components/schemas/WrResponseStatus"
         authenticationFailureReasons:
           type: array
           items:
-            $ref: '#/components/schemas/AuthFailureReasons'
+            $ref: "#/components/schemas/AuthFailureReasons"
           nullable: true
         response:
-          $ref: '#/components/schemas/KeynoteDtosResponse'
+          $ref: "#/components/schemas/KeynoteDtosResponse"
       additionalProperties: false
     KeynoteTransitionType:
       enum:
@@ -462,21 +462,21 @@ components:
         keynotes:
           type: array
           items:
-            $ref: '#/components/schemas/KeynoteDTO'
+            $ref: "#/components/schemas/KeynoteDTO"
           nullable: true
       additionalProperties: false
     KeynoteUserDTOResponseWrapper:
       type: object
       properties:
         status:
-          $ref: '#/components/schemas/WrResponseStatus'
+          $ref: "#/components/schemas/WrResponseStatus"
         authenticationFailureReasons:
           type: array
           items:
-            $ref: '#/components/schemas/AuthFailureReasons'
+            $ref: "#/components/schemas/AuthFailureReasons"
           nullable: true
         response:
-          $ref: '#/components/schemas/KeynoteUserDTO'
+          $ref: "#/components/schemas/KeynoteUserDTO"
       additionalProperties: false
     ListDtosResponse:
       type: object
@@ -484,78 +484,78 @@ components:
         roomList:
           type: array
           items:
-            $ref: '#/components/schemas/TR_RoomDTO'
+            $ref: "#/components/schemas/TR_RoomDTO"
           nullable: true
         presentorList:
           type: array
           items:
-            $ref: '#/components/schemas/TR_PresentorDTO'
+            $ref: "#/components/schemas/TR_PresentorDTO"
           nullable: true
         screenList:
           type: array
           items:
-            $ref: '#/components/schemas/TR_ScreenDTO'
+            $ref: "#/components/schemas/TR_ScreenDTO"
           nullable: true
         spectatorList:
           type: array
           items:
-            $ref: '#/components/schemas/TR_SpectatorDTO'
+            $ref: "#/components/schemas/TR_SpectatorDTO"
           nullable: true
         keynoteList:
           type: array
           items:
-            $ref: '#/components/schemas/KeynoteDTO'
+            $ref: "#/components/schemas/KeynoteDTO"
           nullable: true
       additionalProperties: false
     ListDtosResponseResponseWrapper:
       type: object
       properties:
         status:
-          $ref: '#/components/schemas/WrResponseStatus'
+          $ref: "#/components/schemas/WrResponseStatus"
         authenticationFailureReasons:
           type: array
           items:
-            $ref: '#/components/schemas/AuthFailureReasons'
+            $ref: "#/components/schemas/AuthFailureReasons"
           nullable: true
         response:
-          $ref: '#/components/schemas/ListDtosResponse'
+          $ref: "#/components/schemas/ListDtosResponse"
       additionalProperties: false
     RoomDtosResponse:
       type: object
       properties:
         room:
-          $ref: '#/components/schemas/TR_RoomDTO'
+          $ref: "#/components/schemas/TR_RoomDTO"
         presentor:
-          $ref: '#/components/schemas/TR_PresentorDTO'
+          $ref: "#/components/schemas/TR_PresentorDTO"
         screen:
-          $ref: '#/components/schemas/TR_ScreenDTO'
+          $ref: "#/components/schemas/TR_ScreenDTO"
         spectator:
-          $ref: '#/components/schemas/TR_SpectatorDTO'
+          $ref: "#/components/schemas/TR_SpectatorDTO"
         baseEntity:
-          $ref: '#/components/schemas/TR_BaseEntityDTO'
+          $ref: "#/components/schemas/TR_BaseEntityDTO"
       additionalProperties: false
     RoomDtosResponseResponseWrapper:
       type: object
       properties:
         status:
-          $ref: '#/components/schemas/WrResponseStatus'
+          $ref: "#/components/schemas/WrResponseStatus"
         authenticationFailureReasons:
           type: array
           items:
-            $ref: '#/components/schemas/AuthFailureReasons'
+            $ref: "#/components/schemas/AuthFailureReasons"
           nullable: true
         response:
-          $ref: '#/components/schemas/RoomDtosResponse'
+          $ref: "#/components/schemas/RoomDtosResponse"
       additionalProperties: false
     StringResponseWrapper:
       type: object
       properties:
         status:
-          $ref: '#/components/schemas/WrResponseStatus'
+          $ref: "#/components/schemas/WrResponseStatus"
         authenticationFailureReasons:
           type: array
           items:
-            $ref: '#/components/schemas/AuthFailureReasons'
+            $ref: "#/components/schemas/AuthFailureReasons"
           nullable: true
         response:
           type: string
@@ -594,7 +594,7 @@ components:
           type: string
           nullable: true
         keynote:
-          $ref: '#/components/schemas/DB_Keynote'
+          $ref: "#/components/schemas/DB_Keynote"
         currentFrame:
           type: integer
           format: int32
@@ -604,13 +604,13 @@ components:
           type: string
           nullable: true
         presentor:
-          $ref: '#/components/schemas/TR_PresentorDTO'
+          $ref: "#/components/schemas/TR_PresentorDTO"
         screen:
-          $ref: '#/components/schemas/TR_ScreenDTO'
+          $ref: "#/components/schemas/TR_ScreenDTO"
         spectators:
           type: array
           items:
-            $ref: '#/components/schemas/TR_SpectatorDTO'
+            $ref: "#/components/schemas/TR_SpectatorDTO"
           nullable: true
       additionalProperties: false
     TR_ScreenDTO:

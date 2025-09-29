@@ -1,4 +1,4 @@
-"use client"
+"use client";
 // Core imports
 import App, { type AppContext, type AppProps } from "next/app";
 import Head from "next/head";
@@ -74,25 +74,27 @@ const getDefaultPageProps = (isSSR: boolean = true): PageProps => ({
   ssr_user: isSSR ? null : undefined,
   ssr_keynote_user: isSSR ? null : undefined,
   securityPage: isSSR ? false : undefined,
-  clientConfig: isSSR ? {
-    API_BASE: process.env.API_BASE!,
-    API_BASE_SSR: process.env.API_BASE_SSR!,
-    API_BASE_REALTIME: process.env.API_BASE_REALTIME!,
-    NAUTH_API_BASE: process.env.NAUTH_API_BASE!,
-    NAUTH_API_BASE_SSR: process.env.NAUTH_API_BASE_SSR!,
-    NAUTH_API_BASE_REALTIME: process.env.NAUTH_API_BASE_REALTIME!,
-    NAUTH_FRONTEND_BASE: process.env.NAUTH_FRONTEND_BASE!,
-    CURRENT_FRONTEND_BASE: process.env.CURRENT_FRONTEND_BASE!,
-  } : {
-    API_BASE: AppENVConfig.API_BASE,
-    API_BASE_SSR: AppENVConfig.API_BASE_SSR,
-    API_BASE_REALTIME: AppENVConfig.API_BASE_REALTIME,
-    NAUTH_API_BASE: AppENVConfig.NAUTH_API_BASE,
-    NAUTH_API_BASE_SSR: AppENVConfig.NAUTH_API_BASE_SSR,
-    NAUTH_API_BASE_REALTIME: AppENVConfig.NAUTH_API_BASE_REALTIME,
-    NAUTH_FRONTEND_BASE: AppENVConfig.NAUTH_FRONTEND_BASE,
-    CURRENT_FRONTEND_BASE: AppENVConfig.CURRENT_FRONTEND_BASE,
-  },
+  clientConfig: isSSR
+    ? {
+        API_BASE: process.env.API_BASE!,
+        API_BASE_SSR: process.env.API_BASE_SSR!,
+        API_BASE_REALTIME: process.env.API_BASE_REALTIME!,
+        NAUTH_API_BASE: process.env.NAUTH_API_BASE!,
+        NAUTH_API_BASE_SSR: process.env.NAUTH_API_BASE_SSR!,
+        NAUTH_API_BASE_REALTIME: process.env.NAUTH_API_BASE_REALTIME!,
+        NAUTH_FRONTEND_BASE: process.env.NAUTH_FRONTEND_BASE!,
+        CURRENT_FRONTEND_BASE: process.env.CURRENT_FRONTEND_BASE!,
+      }
+    : {
+        API_BASE: AppENVConfig.API_BASE,
+        API_BASE_SSR: AppENVConfig.API_BASE_SSR,
+        API_BASE_REALTIME: AppENVConfig.API_BASE_REALTIME,
+        NAUTH_API_BASE: AppENVConfig.NAUTH_API_BASE,
+        NAUTH_API_BASE_SSR: AppENVConfig.NAUTH_API_BASE_SSR,
+        NAUTH_API_BASE_REALTIME: AppENVConfig.NAUTH_API_BASE_REALTIME,
+        NAUTH_FRONTEND_BASE: AppENVConfig.NAUTH_FRONTEND_BASE,
+        CURRENT_FRONTEND_BASE: AppENVConfig.CURRENT_FRONTEND_BASE,
+      },
 });
 
 const hydrateClientConfig = (clientConfig: AppENVConfigType) => {
@@ -120,21 +122,18 @@ const fetchKeynoteUser = async (token: string) => {
   return keynoteUserResponse?.status === "Ok" ? keynoteUserResponse?.response : null;
 };
 
-const handleAuthRedirect = (
-  userResponse: any,
-  appContext: AppContext
-): boolean => {
+const handleAuthRedirect = (userResponse: any, appContext: AppContext): boolean => {
   if (
     userResponse?.status === "Forbidden" &&
     (userResponse?.authenticationFailureReasons as string[])?.includes("_2FARequired") &&
     !appContext.ctx.pathname.includes("/auth/2FA")
   ) {
-    const currentUrl = process.env.CURRENT_FRONTEND_BASE + appContext.ctx.pathname + (appContext.ctx.query ? '?' + new URLSearchParams(appContext.ctx.query as Record<string, string>).toString() : '');
+    const currentUrl =
+      process.env.CURRENT_FRONTEND_BASE +
+      appContext.ctx.pathname +
+      (appContext.ctx.query ? "?" + new URLSearchParams(appContext.ctx.query as Record<string, string>).toString() : "");
     appContext?.ctx?.res?.writeHead(302, {
-      Location: new URL(
-        "/auth/2FA?redirect=" + encodeURIComponent(currentUrl),
-        process.env.NAUTH_FRONTEND_BASE!
-      ).toString(),
+      Location: new URL("/auth/2FA?redirect=" + encodeURIComponent(currentUrl), process.env.NAUTH_FRONTEND_BASE!).toString(),
     });
     appContext?.ctx?.res?.end();
     return true;
@@ -182,21 +181,11 @@ const AppToastContainer = () => (
   />
 );
 
-const AppProviders = ({ 
-  children, 
-  nauthUser, 
-  keynoteUser 
-}: { 
-  children: React.ReactNode;
-  nauthUser: any;
-  keynoteUser: any;
-}) => (
+const AppProviders = ({ children, nauthUser, keynoteUser }: { children: React.ReactNode; nauthUser: any; keynoteUser: any }) => (
   <NauthUserContext.Provider value={nauthUser}>
     <KeynoteUserContext.Provider value={keynoteUser}>
       <NauthRealtimeProvider>
-        <KeynoteRealtimeProvider>
-          {children}
-        </KeynoteRealtimeProvider>
+        <KeynoteRealtimeProvider>{children}</KeynoteRealtimeProvider>
       </NauthRealtimeProvider>
     </KeynoteUserContext.Provider>
   </NauthUserContext.Provider>
@@ -205,7 +194,7 @@ const AppProviders = ({
 const InnerApp = ({ Component, pageProps }: AppPropsWithSSRUser) => {
   const { user, refresh } = useNauthUser();
   const realtime = useNauthRealtime();
-  
+
   useEffect(() => {
     if (user) {
       realtime.connect();
@@ -227,11 +216,11 @@ const InnerApp = ({ Component, pageProps }: AppPropsWithSSRUser) => {
 };
 
 const AppWithProviders = (props: AppPropsWithSSRUser) => {
-  const nauthUser = useNauthUserInternal({ 
-    initialUser: props.pageProps.ssr_user ?? null 
+  const nauthUser = useNauthUserInternal({
+    initialUser: props.pageProps.ssr_user ?? null,
   });
-  const keynoteUser = useKeynoteUserInternal({ 
-    initialUser: props.pageProps.ssr_keynote_user ?? null 
+  const keynoteUser = useKeynoteUserInternal({
+    initialUser: props.pageProps.ssr_keynote_user ?? null,
   });
 
   // Debug logging
@@ -289,7 +278,6 @@ MyApp.getInitialProps = async (appContext: AppContext) => {
       // Fetch Keynote user
       const keynoteUser = await fetchKeynoteUser(authToken);
       response.ssr_keynote_user = keynoteUser;
-
     } catch (error) {
       console.error("Error fetching user data:", error);
       // Continue with null users if API fails

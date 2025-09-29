@@ -13,7 +13,7 @@ const Navbar = ({ sticky = true }: { sticky?: boolean }) => {
 
   return (
     <>
-      <div className="z-50 m-0 hidden w-full items-center justify-center bg-background border-b-2 border-border md:flex">
+      <div className="bg-background border-border z-50 m-0 hidden w-full items-center justify-center border-b-2 md:flex">
         <div className="flex h-18 w-10/12 max-w-screen-xl items-center justify-between">
           <Link
             aria-label="Go home"
@@ -36,7 +36,7 @@ const Navbar = ({ sticky = true }: { sticky?: boolean }) => {
         </div>
       </div>
 
-      <div className={`top-0 z-50 m-0 box-border flex h-16 w-full items-center justify-center bg-background py-3 shadow-md md:hidden`}>
+      <div className={`bg-background top-0 z-50 m-0 box-border flex h-16 w-full items-center justify-center py-3 shadow-md md:hidden`}>
         <div className={`flex w-11/12 items-center justify-between`} style={{ maxWidth: router.asPath.startsWith("/admin") ? 1600 : 1200 }}>
           <SideMenu />
           <Link href={"/"}>

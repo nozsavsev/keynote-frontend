@@ -1,5 +1,5 @@
 import { KEYNOTE_API } from "@/API/KEYNOTE/API";
-import { KeynoteUserDTO } from "@/API/KEYNOTE/KeynoteApi_gen"; 
+import { KeynoteUserDTO } from "@/API/KEYNOTE/KeynoteApi_gen";
 import useSWR from "swr";
 
 type UserSWRData = Awaited<ReturnType<typeof KEYNOTE_API.Client.User.CurrentUser>>;

@@ -15,11 +15,13 @@ import { ArrowLeftIcon, ArrowRightIcon, Check, CrossIcon, Eye, EyeOff, Hand, Pen
 import { Input } from "@/components/ui/input";
 import useKeynoteUser from "@/hooks/keynote/useKeynoteUser";
 import PresenterNotes from "@/components/presenter/PresenterNotes";
+import { useViewportHeight } from "@/hooks/useViewportHeight";
 
 const QrScanner = dynamic(() => import("@/components/QrScanner"), { ssr: false });
 
 export default observer(() => {
   const presentor = usePresentorHub();
+  const vh = useViewportHeight();
   type CurrentStateType = "loading" | "waiting-for-screen" | "presenting";
   const [currentState, setCurrentState] = useState<CurrentStateType>("loading");
 
@@ -69,7 +71,7 @@ export default observer(() => {
       <Head>
         <title>Present</title>
       </Head>
-      <div className="h-[calc(100vh-63px)] w-screen items-center justify-center overflow-hidden bg-black">
+      <div className="w-screen items-center justify-center overflow-hidden bg-black" style={{ height: `calc(${vh * 100}px - 63px)` }}>
         <AnimatePresence mode="wait" initial={false}>
           {currentState === "loading" && <Loading />}
           {currentState === "waiting-for-screen" && <WaitingForScreen />}
@@ -121,9 +123,9 @@ const Presenting = observer(() => {
       className="relative flex h-full w-full flex-col items-center justify-start pt-8"
     >
       <PresentorNameOverlay />
-      <ScreenAndAudienceOverlay  />
-      <SelectKeynoteOverlay      />
-      <SlideControlverlay      />
+      <ScreenAndAudienceOverlay />
+      <SelectKeynoteOverlay />
+      <SlideControlverlay />
       <AudienceControlOverlay key="audience-control-overlay" />
 
       <PresenterNotes
@@ -561,7 +563,7 @@ const AudienceControlOverlay = observer(() => {
           className="bg-background absolute top-96 left-0 z-40 flex max-h-80 min-h-80 w-80 flex-col gap-3 overflow-y-auto rounded-br-lg p-4"
         >
           <Button variant="outline" size="sm" onClick={() => presentor.SetShowSpectatorQR(!presentor.currentRoom?.showSpectatorQR)}>
-             {presentor.currentRoom?.showSpectatorQR ? "Hide QR" : "Show QR"}
+            {presentor.currentRoom?.showSpectatorQR ? "Hide QR" : "Show QR"}
           </Button>
 
           <div>
@@ -609,7 +611,7 @@ const AudienceControlOverlay = observer(() => {
         key="select-audience-control-overlay"
         initial={{ opacity: 0 }}
         animate={{
-          opacity: (presentor.currentRoom?.spectators?.some((spectator) => spectator.isHandRaised) ? 1 : 0),
+          opacity: presentor.currentRoom?.spectators?.some((spectator) => spectator.isHandRaised) ? 1 : 0,
           y: presentor.currentRoom?.spectators?.some((spectator) => spectator.isHandRaised) ? 0 : 40,
           x: isExpanded ? 320 : 0,
         }}
@@ -622,4 +624,3 @@ const AudienceControlOverlay = observer(() => {
     </>
   );
 });
-

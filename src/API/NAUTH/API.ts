@@ -17,7 +17,6 @@ import { AppENVConfig } from "@/pages/_app";
 
 const dev = process.env.NODE_ENV !== "production";
 
-
 export const GetDefaultConfig = () => {
   return new NauthApi.Configuration({
     credentials: "include",
@@ -33,7 +32,7 @@ export type SSRConfigParameters = {
 export const GetSSRDefaultConfig = (params: SSRConfigParameters) => {
   // Use process.env directly in middleware context, AppENVConfig in other SSR contexts
   const basePath = params.useProcessEnv ? process.env.NAUTH_API_BASE_SSR! : AppENVConfig.NAUTH_API_BASE_SSR!;
-  
+
   return new NauthApi.Configuration({
     credentials: "include",
     basePath: basePath,
@@ -99,18 +98,26 @@ export const ExecuteApiRequest = async <T extends (...args: any[]) => any>(
 > => {
   try {
     // Extract function name for logging
-    const functionName = fn.name || 'unknown';
-    const apiPath = functionName.replace(/^api/, '').replace(/([A-Z])/g, '/$1').toLowerCase().replace(/^\//, '');
-    
+    const functionName = fn.name || "unknown";
+    const apiPath = functionName
+      .replace(/^api/, "")
+      .replace(/([A-Z])/g, "/$1")
+      .toLowerCase()
+      .replace(/^\//, "");
+
     hydrateDateTimeObjects(args);
     let res = await fn(...args);
     hydrateDateTimeObjects(res);
-    
+
     return res;
   } catch (e: any) {
-    const functionName = fn.name || 'unknown';
-    const apiPath = functionName.replace(/^api/, '').replace(/([A-Z])/g, '/$1').toLowerCase().replace(/^\//, '');
-    
+    const functionName = fn.name || "unknown";
+    const apiPath = functionName
+      .replace(/^api/, "")
+      .replace(/([A-Z])/g, "/$1")
+      .toLowerCase()
+      .replace(/^\//, "");
+
     try {
       const payload: NauthApi.StringResponseWrapper =
         (await e.response?.json()) ||
@@ -133,7 +140,10 @@ export const ExecuteApiRequest = async <T extends (...args: any[]) => any>(
             window.location.href = new URL(`/auth/2FA?redirect=${encodeURIComponent(currentUrl)}`, AppENVConfig.NAUTH_FRONTEND_BASE).toString();
           } else if (!window.location.pathname.includes("/auth/") && payload?.authenticationFailureReasons?.includes("SessionExpired") == false) {
             const currentUrl = window.location.origin + window.location.pathname + window.location.search;
-            window.location.href = new URL(`/auth/verificationExplainer?required=${payload?.authenticationFailureReasons?.join(",")}&redirect=${encodeURIComponent(currentUrl)}`, AppENVConfig.NAUTH_FRONTEND_BASE).toString();
+            window.location.href = new URL(
+              `/auth/verificationExplainer?required=${payload?.authenticationFailureReasons?.join(",")}&redirect=${encodeURIComponent(currentUrl)}`,
+              AppENVConfig.NAUTH_FRONTEND_BASE,
+            ).toString();
           }
         }
 

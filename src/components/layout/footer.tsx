@@ -7,14 +7,14 @@ const Footer = () => {
   const router = useRouter();
 
   return (
-    <footer className="flex w-screen flex-col items-center justify-center border-t border-border bg-background text-foreground">
+    <footer className="border-border bg-background text-foreground flex w-screen flex-col items-center justify-center border-t">
       <div
         className="relative flex w-full flex-col items-center justify-center pt-8 pb-20"
         style={{ maxWidth: router.asPath.startsWith("/admin") ? 1600 : 1200 }}
       >
-        <div className="text-center mb-6">
-          <h3 className="text-2xl font-bold mb-4">Keynote</h3>
-          <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
+        <div className="mb-6 text-center">
+          <h3 className="mb-4 text-2xl font-bold">Keynote</h3>
+          <p className="text-muted-foreground mx-auto mb-6 max-w-2xl">
             The future of presentations is here. Upload, present, and engage like never before.
           </p>
         </div>
@@ -32,14 +32,25 @@ const Footer = () => {
             </Link>
           </div>
 
-          <div className="mx-2 h-10 bg-foreground sm:w-px" />
+          <div className="bg-foreground mx-2 h-10 sm:w-px" />
 
           <div className="flex">
-            <Link aria-label="Go to pharma for you facebook" className="mx-2 text-3xl" href={"https://www.linkedin.com/in/ilia-nozdrachev/"}>
+            <Link aria-label="LinkedIn Profile" className="mx-2 text-3xl" href={"https://www.linkedin.com/in/ilia-nozdrachev/"}>
               <FaLinkedin />
             </Link>
-            <Link aria-label="Go to pharma for you instagram" className="mx-2 text-3xl" href={"https://github.com/nozsavsev"}>
+            <Link aria-label="GitHub Profile" className="mx-2 text-3xl" href={"https://github.com/nozsavsev"}>
               <FiGithub />
+            </Link>
+          </div>
+
+          <div className="mt-4 flex flex-col items-center gap-2 text-sm opacity-70 sm:flex-row">
+            <span>Open Source:</span>
+            <Link className="hover:text-primary transition-colors" href={"https://github.com/nozsavsev/nauth-asp"}>
+              Backend (ASP.NET Core)
+            </Link>
+            <span>•</span>
+            <Link className="hover:text-primary transition-colors" href={"https://github.com/nozsavsev/nauth-frontend"}>
+              Frontend (Next.js)
             </Link>
           </div>
         </div>

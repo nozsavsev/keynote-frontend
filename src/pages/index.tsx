@@ -243,18 +243,6 @@ export default function Home() {
                 </CardDescription>
               </CardHeader>
             </Card>
-
-            <Card className="group border-border/50 hover:border-primary/50 transition-all duration-300 hover:shadow-lg">
-              <CardHeader className="pb-3">
-                <div className="group-hover:bg-primary/20 mb-3 flex h-10 w-10 items-center justify-center rounded-lg transition-colors">
-                  <Zap className="text-primary h-5 w-5" />
-                </div>
-                <CardTitle className="text-lg">Virtual Laser Pointer</CardTitle>
-                <CardDescription className="text-sm">
-                  Highlight important points with a virtual laser pointer that appears on all connected screens in real-time.
-                </CardDescription>
-              </CardHeader>
-            </Card>
           </div>
         </div>
       </section>

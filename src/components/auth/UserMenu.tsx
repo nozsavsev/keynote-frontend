@@ -28,11 +28,20 @@ const UserMenu = ({ mobile }: { mobile?: boolean }) => {
       <>
         <GoogleProviderWraper />
         <div className="mx-4 flex shrink-0 items-center justify-center">
-          <Link className="pr-1 font-semibold" href={ new URL(`/auth/register?redirect=${router.pathname}`, AppENVConfig.NAUTH_FRONTEND_BASE!).toString()}>
+          <Link
+            className="pr-1 font-semibold"
+            href={new URL(`/auth/register?redirect=${router.pathname}`, AppENVConfig.NAUTH_FRONTEND_BASE!).toString()}
+          >
             {"Register"} /
           </Link>
 
-          <Link href={ new URL(`/auth/login?redirect=${  new URL(router.pathname, AppENVConfig.CURRENT_FRONTEND_BASE!).toString()}`,  AppENVConfig.NAUTH_FRONTEND_BASE!).toString()} className="font-semibold">
+          <Link
+            href={new URL(
+              `/auth/login?redirect=${new URL(router.pathname, AppENVConfig.CURRENT_FRONTEND_BASE!).toString()}`,
+              AppENVConfig.NAUTH_FRONTEND_BASE!,
+            ).toString()}
+            className="font-semibold"
+          >
             {"Login"}
           </Link>
         </div>
@@ -74,7 +83,7 @@ const DropMenu = ({ user, onClick, refresh }: { user: UserDTO; onClick?: () => v
   return (
     <div className="z-20 shrink-0 text-right">
       <Menu as="div" className="relative inline-block">
-        <Menu.Button className="h-full overflow-hidden rounded-xl border-2 border-border">
+        <Menu.Button className="border-border h-full overflow-hidden rounded-xl border-2">
           <Image
             loading="lazy"
             alt="user avatar"
@@ -95,11 +104,11 @@ const DropMenu = ({ user, onClick, refresh }: { user: UserDTO; onClick?: () => v
         >
           <Menu.Items
             onClick={onClick}
-            className="absolute right-0 z-50 mt-4 w-56 divide-y divide-border rounded-md border border-border bg-popover pl-0 shadow-lg outline-none"
+            className="divide-border border-border bg-popover absolute right-0 z-50 mt-4 w-56 divide-y rounded-md border pl-0 shadow-lg outline-none"
           >
             <div className="px-1 py-1">
               <Menu.Item>
-                <div className={`my-2 flex items-center justify-center text-lg font-semibold text-popover-foreground`}>
+                <div className={`text-popover-foreground my-2 flex items-center justify-center text-lg font-semibold`}>
                   <div className="">{"Hi"}&nbsp;</div>
 
                   <div>{user?.name || user?.email?.split("@")[0]}</div>
@@ -114,7 +123,7 @@ const DropMenu = ({ user, onClick, refresh }: { user: UserDTO; onClick?: () => v
                     target="_blank"
                     href={new URL(`/account`, AppENVConfig.NAUTH_FRONTEND_BASE!).toString()}
                     className={`${
-                      active ? "bg-accent font-semibold text-accent-foreground" : "text-popover-foreground"
+                      active ? "bg-accent text-accent-foreground font-semibold" : "text-popover-foreground"
                     } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
                   >
                     <FiUser className={`mx-2`} height={24} width={24} />
@@ -126,10 +135,9 @@ const DropMenu = ({ user, onClick, refresh }: { user: UserDTO; onClick?: () => v
               <Menu.Item>
                 {({ active }) => (
                   <Link
-
-                    href={'/account'}
+                    href={"/account"}
                     className={`${
-                      active ? "bg-accent font-semibold text-accent-foreground" : "text-popover-foreground"
+                      active ? "bg-accent text-accent-foreground font-semibold" : "text-popover-foreground"
                     } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
                   >
                     <FiUser className={`mx-2`} height={24} width={24} />
@@ -137,16 +145,18 @@ const DropMenu = ({ user, onClick, refresh }: { user: UserDTO; onClick?: () => v
                   </Link>
                 )}
               </Menu.Item>
-
             </div>
 
-            <div hidden={(user.permissions?.some(p => p.permission?.key?.startsWith("PrAdmin")) ?? false) === false} className={`px-1 py-1 ${true ? "" : "hidden"}`}>
+            <div
+              hidden={(user.permissions?.some((p) => p.permission?.key?.startsWith("PrAdmin")) ?? false) === false}
+              className={`px-1 py-1 ${true ? "" : "hidden"}`}
+            >
               <Menu.Item>
                 {({ active }) => (
                   <Link
                     href={`/admin/`}
                     className={`${
-                      active ? "bg-accent font-semibold text-accent-foreground" : "text-popover-foreground"
+                      active ? "bg-accent text-accent-foreground font-semibold" : "text-popover-foreground"
                     } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
                   >
                     <FiShield className={`mx-2`} height={24} width={24} />
@@ -166,7 +176,7 @@ const DropMenu = ({ user, onClick, refresh }: { user: UserDTO; onClick?: () => v
                       });
                     }}
                     className={`${
-                      active ? "bg-accent font-semibold text-accent-foreground" : "text-popover-foreground"
+                      active ? "bg-accent text-accent-foreground font-semibold" : "text-popover-foreground"
                     } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
                   >
                     <BiLogOut className={`mx-2`} height={24} width={24} />

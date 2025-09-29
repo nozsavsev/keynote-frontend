@@ -61,7 +61,7 @@ export class ScreenRT_HUB extends KeynoteRealtimeBase<TRScreenDTO> {
   @action
   public async JoinRoomAsScreen(RoomCode: string): Promise<boolean> {
     this.setIsJoiningRoom(true);
-this.setRoomCode("");
+    this.setRoomCode("");
     try {
       if (this.connectionState === "connected" && this.connection != null) {
         var result = (await this.connection.invoke("JoinRoomAsScreen", RoomCode)) as TRRoomDTO;

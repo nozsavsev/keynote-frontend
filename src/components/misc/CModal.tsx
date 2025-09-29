@@ -98,9 +98,9 @@ function CModalComponent(
                 leaveTo="opacity-0 scale-95"
               >
                 <Dialog.Panel
-                  className={`w-fit transform rounded-2xl bg-card ${!nopadding && "p-6"} text-left align-middle shadow-xl transition-all`}
+                  className={`bg-card w-fit transform rounded-2xl ${!nopadding && "p-6"} text-left align-middle shadow-xl transition-all`}
                 >
-                  <Dialog.Title as="h3" hidden={!title} className="mb-4 text-lg leading-6 font-medium text-card-foreground">
+                  <Dialog.Title as="h3" hidden={!title} className="text-card-foreground mb-4 text-lg leading-6 font-medium">
                     {title}
                   </Dialog.Title>
                   {children}

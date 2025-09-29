@@ -1,5 +1,5 @@
 import { AppENVConfig } from "@/pages/_app";
-import * as  KeynoteApi from "./KeynoteApi_gen";
+import * as KeynoteApi from "./KeynoteApi_gen";
 import { UserControllerClient } from "./Client/UserController";
 import { StatusControllerClient } from "./Client/StatusController";
 import { KeynoteControllerClient } from "./Client/KeynoteController";
@@ -9,7 +9,6 @@ import { SessionControllerSSR } from "../NAUTH/SSR/SessionControllerSSR";
 import { StatusControllerSSR } from "./SSR/StatusControllerSSR";
 import { KeynoteControllerSSR } from "./SSR/KeynoteControllerSSR";
 const dev = process.env.NODE_ENV !== "production";
-
 
 export const GetDefaultConfig = () => {
   return new KeynoteApi.Configuration({
@@ -26,7 +25,7 @@ export type SSRConfigParameters = {
 export const GetSSRDefaultConfig = (params: SSRConfigParameters) => {
   // Use process.env directly in middleware context, AppENVConfig in other SSR contexts
   const basePath = params.useProcessEnv ? process.env.API_BASE_SSR! : AppENVConfig.API_BASE_SSR!;
-  
+
   return new KeynoteApi.Configuration({
     credentials: "include",
     basePath: basePath,
@@ -92,19 +91,25 @@ export const ExecuteApiRequest = async <T extends (...args: any[]) => any>(
 > => {
   try {
     // Extract function name for logging
-    const functionName = fn.name || 'unknown';
-    const apiPath = functionName.replace(/^api/, '').replace(/([A-Z])/g, '/$1').toLowerCase().replace(/^\//, '');
-    
-    
+    const functionName = fn.name || "unknown";
+    const apiPath = functionName
+      .replace(/^api/, "")
+      .replace(/([A-Z])/g, "/$1")
+      .toLowerCase()
+      .replace(/^\//, "");
+
     hydrateDateTimeObjects(args);
     let res = await fn(...args);
     hydrateDateTimeObjects(res);
-    
+
     return res;
   } catch (e: any) {
-    const functionName = fn.name || 'unknown';
-    const apiPath = functionName.replace(/^api/, '').replace(/([A-Z])/g, '/$1').toLowerCase().replace(/^\//, '');
-    
+    const functionName = fn.name || "unknown";
+    const apiPath = functionName
+      .replace(/^api/, "")
+      .replace(/([A-Z])/g, "/$1")
+      .toLowerCase()
+      .replace(/^\//, "");
 
     try {
       const payload: KeynoteApi.StringResponseWrapper =
@@ -123,16 +128,18 @@ export const ExecuteApiRequest = async <T extends (...args: any[]) => any>(
         //process client only redirects
 
         if (payload.status === "Forbidden") {
-
           if (!window.location.pathname.includes("/auth/2FA") && payload?.authenticationFailureReasons?.includes("_2FARequired")) {
             const currentUrl = window.location.origin + window.location.pathname + window.location.search;
             window.location.href = new URL(`/auth/2FA?redirect=${encodeURIComponent(currentUrl)}`, AppENVConfig.NAUTH_FRONTEND_BASE).toString();
           } else if (!window.location.pathname.includes("/auth/") && payload?.authenticationFailureReasons?.includes("SessionExpired") == false) {
             const currentUrl = window.location.origin + window.location.pathname + window.location.search;
-            window.location.href = new URL(`/auth/verificationExplainer?required=${payload?.authenticationFailureReasons?.join(",")}&redirect=${encodeURIComponent(currentUrl)}`, AppENVConfig.NAUTH_FRONTEND_BASE).toString();
+            window.location.href = new URL(
+              `/auth/verificationExplainer?required=${payload?.authenticationFailureReasons?.join(",")}&redirect=${encodeURIComponent(currentUrl)}`,
+              AppENVConfig.NAUTH_FRONTEND_BASE,
+            ).toString();
           }
         }
-        
+
         if (payload.status === "ServerDown" && !window.location.pathname.includes("/500")) {
           const currentUrl = window.location.origin + window.location.pathname + window.location.search;
           window.location.href = "/500?redirect=" + encodeURIComponent(currentUrl);
@@ -156,8 +163,6 @@ export const ExecuteApiRequest = async <T extends (...args: any[]) => any>(
 };
 
 class Client_API {
- 
-
   public get User(): UserControllerClient {
     return new UserControllerClient();
   }
@@ -173,7 +178,6 @@ class Client_API {
   public get Session(): SessionControllerClient {
     return new SessionControllerClient();
   }
-  
 }
 
 class SSR_API {
@@ -192,7 +196,6 @@ class SSR_API {
   public get Keynote(): KeynoteControllerSSR {
     return new KeynoteControllerSSR();
   }
-  
 }
 
 export class KEYNOTE_API {

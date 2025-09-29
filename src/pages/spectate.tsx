@@ -30,11 +30,13 @@ import { Input } from "@/components/ui/input";
 import useKeynoteUser from "@/hooks/keynote/useKeynoteUser";
 import { InputOTP, InputOTPGroup, InputOTPSlot, InputOTPSeparator } from "@/components/ui/input-otp";
 import SpectatorNotes from "@/components/spectator/SpectatorNotes";
+import { useViewportHeight } from "@/hooks/useViewportHeight";
 
 const QrScanner = dynamic(() => import("@/components/QrScanner"), { ssr: false });
 
 export default observer(() => {
   const spectator = useSpectatorHub();
+  const vh = useViewportHeight();
   type CurrentStateType = "loading" | "waiting-for-room" | "spectating";
   const [currentState, setCurrentState] = useState<CurrentStateType>("loading");
 
@@ -80,7 +82,7 @@ export default observer(() => {
       <Head>
         <title>Present</title>
       </Head>
-      <div className="h-[calc(100vh-63px)] w-screen items-center justify-center overflow-hidden bg-black">
+      <div className="w-screen items-center justify-center overflow-hidden bg-black" style={{ height: `calc(${vh * 100}px - 63px)` }}>
         <AnimatePresence mode="wait" initial={false}>
           {currentState === "loading" && <Loading />}
           {currentState === "waiting-for-room" && <WaitingForRoom />}

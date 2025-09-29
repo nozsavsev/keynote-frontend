@@ -219,14 +219,14 @@ export class KeynoteRealtimeBase<ME_TYPE> {
       this._currentRoom = state;
     }
   }
- 
+
   @action
   protected async OnSuccessfullConnection() {
     if (this.connectionState === "connected" && this.connection != null) {
       await this.refreshData(null);
     }
   }
- 
+
   @action
   protected async OnRoomCodeReceived(roomCode: string) {
     if (this.connectionState === "connected" && this.connection != null) {
@@ -246,7 +246,7 @@ export class KeynoteRealtimeBase<ME_TYPE> {
   //#endregion
 
   //#region health monitoring
- 
+
   @action
   private setupHealthMonitoring() {
     // Start health check interval (every 30 seconds)
@@ -273,7 +273,7 @@ export class KeynoteRealtimeBase<ME_TYPE> {
       this.healthCheckInterval = null;
     }
   }
- 
+
   @action
   private async performHealthCheck() {
     console.log(`[${this.hubName}] Performing health check...`);

@@ -68,7 +68,7 @@ const Scanning = ({ onValue }: { onValue: (value: string) => void }) => {
   const handleScan = (result: any) => {
     const value = result[0].rawValue.substring(result[0].rawValue.length - 19);
     onValue(value);
-    
+
     // Reset scanner to allow reading the same QR code again
     setIsActive(false);
     setTimeout(() => {
@@ -78,13 +78,13 @@ const Scanning = ({ onValue }: { onValue: (value: string) => void }) => {
 
   return (
     <div className="flex h-full w-full items-center justify-center overflow-hidden rounded-xl">
-        <Scanner
-          onScan={handleScan}
-          sound={true}
-          components={{
-            finder: false,
-          }}
-        />
+      <Scanner
+        onScan={handleScan}
+        sound={true}
+        components={{
+          finder: false,
+        }}
+      />
     </div>
   );
 };

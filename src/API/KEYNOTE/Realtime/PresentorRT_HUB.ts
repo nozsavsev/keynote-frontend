@@ -5,15 +5,13 @@ import { KEYNOTE_API } from "../API";
 import { TRPresentorDTO, TRRoomDTO, TRScreenDTO } from "../KeynoteApi_gen/models";
 import { KeynoteRealtimeBase } from "./HubBase";
 
-
 export class PresentorRT_HUB extends KeynoteRealtimeBase<TRPresentorDTO> {
-
   protected override async OnSuccessfullConnection() {
     await super.OnSuccessfullConnection();
 
     if (this.currentRoom == null) {
       await this.CreateRoom();
-    } 
+    }
   }
 
   constructor() {
@@ -149,6 +147,4 @@ export class PresentorRT_HUB extends KeynoteRealtimeBase<TRPresentorDTO> {
   }
 
   //#endregion
-
-
 }

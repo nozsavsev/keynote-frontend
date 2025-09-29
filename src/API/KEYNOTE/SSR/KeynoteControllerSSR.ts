@@ -20,4 +20,3 @@ export class KeynoteControllerSSR {
     return await ExecuteApiRequest<typeof method>(method.bind(api), params);
   }
 }
-  

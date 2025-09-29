@@ -1,19 +1,55 @@
-# NAUTH - Frontend
+# Keynote - Real-time PDF Presentation Platform
 
-A modern, secure, and feature-rich authentication and authorization microservice designed to be the backbone of nozsa.com security.
+A modern, interactive presentation platform that transforms PDF presentations into engaging, real-time experiences. Built with Next.js, TypeScript, and integrated with NAUTH authentication system.
 
-This is the frontend for the NAUTH service, built with Next.js and TypeScript.
+## Overview
 
-## Features
+Keynote revolutionizes how presentations are delivered by providing real-time synchronization, mobile viewing, and interactive features that boost audience engagement. Upload your PDFs, present remotely, and connect with your audience like never before.
 
-- **Core Authentication**: Robust and secure authentication suite, featuring Two-Factor Authentication (2FA), seamless Google Login integration, and passwordless login with temporary codes. User credentials are protected using the strong Argon2id hashing algorithm.
-- **Advanced Session Management**: All sessions are validated against the database for enhanced security, with the ability to instantly revoke any session in real-time.
-- **Authorization & Permissions**: A flexible and powerful permission system allows for fine-grained access control. Nauth offers centralized permission management and can authenticate other applications on the same domain, storing and managing permissions across all services.
-- **Comprehensive User Management**: Administrators have access to a comprehensive set of tools to effectively manage users, including the ability to delete accounts, set passwords, and trigger critical email actions like verification and password resets.
-- **Customizable Transactional Emails**: Nauth includes a built-in email template system for all transactional emails. Anyone with the right permissions can customize templates for various actions, ensuring consistent branding and communication.
-- **Extensible Service Integration**: Designed for extensibility, Nauth allows authorized users (admins only) to register other applications on the domain to use nauth as an authentication system. These services can then register their own permissions in real-time.
+## Key Features
+
+### Presentation Management
+
+- **Easy PDF Upload**: Drag and drop PDF files with instant processing
+- **Real-time Control**: Remote presentation control from any device
+- **Live Synchronization**: Perfect sync across all connected devices
+- **Presenter Notes**: Private notes visible only to the presenter
+
+### Interactive Features
+
+- **Raise Hand**: Audience members can raise hands for questions
+- **Temporary Control**: Grant audience members temporary presentation control
+- **Mobile Optimization**: Optimized viewing experience on mobile devices
+
+### Technical Capabilities
+
+- **No Software Installation**: Works directly in web browsers
+- **Universal Access**: Compatible with any device and operating system
+- **Unlimited Audience**: Support for unlimited spectator connections
+- **Real-time Communication**: SignalR-powered live updates
+
+### Authentication & Security
+
+- **NAUTH Integration**: Secure authentication via NAUTH microservice
+- **Session Management**: Advanced session validation and management
+- **Permission System**: Fine-grained access control
+- **User Management**: Comprehensive user administration tools
+
+## How It Works
+
+1. **Upload & Connect**: Upload your PDF presentation and connect your screen or projector
+2. **Present & Control**: Control your presentation remotely from any device with real-time synchronization
+3. **Engage & Interact**: Audience members join on their devices, raise hands, and can request temporary control
 
 ## Getting Started
+
+### Prerequisites
+
+- Node.js 24+ and Yarn
+- NAUTH authentication service running
+- Keynote backend service running
+
+### Installation
 
 First, install the dependencies:
 
@@ -30,6 +66,10 @@ yarn dev
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
 Note: The development server runs with `NODE_TLS_REJECT_UNAUTHORIZED=0` to allow self-signed certificates.
+
+### Environment Setup
+
+Configure your environment variables for NAUTH and Keynote backend connections.
 
 ## Available Scripts
 
@@ -51,10 +91,27 @@ It correctly bundles React in production mode and optimizes the build for the be
 
 Starts the application in production mode. The application should be compiled with `yarn build` first.
 
-### `yarn lint`
+### Additional Scripts
 
-Checks the code for formatting and linting issues using Biome.
+PowerShell scripts are available in the `./scripts` folder for various development tasks:
 
-### `yarn format`
+- `RunPermissionGenerator.ps1` - Generate permissions for the application
+- `RunPrettier.ps1` - Run Prettier code formatting
+- `UpdateKeynoteApi.ps1` - Update Keynote API client
+- `UpdateNauthApi.ps1` - Update NAUTH API client
 
-Formats the code using Biome.
+## Architecture
+
+Keynote is built as a modern web application with the following architecture:
+
+- **Frontend**: Next.js with TypeScript, Tailwind CSS, and shadcn/ui components
+- **Authentication**: Integrated with NAUTH microservice for secure user management
+- **Real-time Communication**: SignalR for live presentation synchronization
+- **Backend**: ASP.NET Core API for presentation management and real-time features
+
+## Related Projects
+
+- **NAUTH Backend**: [https://github.com/nozsavsev/nauth-asp](https://github.com/nozsavsev/nauth-asp) - Authentication and authorization microservice
+- **NAUTH Frontend**: [https://github.com/nozsavsev/nauth-frontend](https://github.com/nozsavsev/nauth-frontend) - Authentication service frontend
+
+© 2024 Keynote. All rights reserved.

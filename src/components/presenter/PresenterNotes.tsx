@@ -4,6 +4,7 @@ import { useState, useEffect, useCallback } from "react";
 import { Button } from "@/components/ui/button";
 import { Eye, EyeOff } from "lucide-react";
 import { Document as ReactPDFDocument, Page as ReactPDFPage } from "react-pdf";
+import { useViewportHeight } from "@/hooks/useViewportHeight";
 
 import dynamic from "next/dynamic";
 
@@ -17,6 +18,7 @@ interface PresenterNotesProps {
 }
 
 const PresenterNotes = ({ _presenterNotesUrl, currentFrame, totalFrames }: PresenterNotesProps) => {
+  const vh = useViewportHeight();
   const [controlsHidden, setControlsHidden] = useState(false);
   const [totalPages, setTotalPages] = useState(0);
   const [pagesLoaded, setPagesLoaded] = useState<Set<number>>(new Set());
@@ -63,13 +65,13 @@ const PresenterNotes = ({ _presenterNotesUrl, currentFrame, totalFrames }: Prese
 
   const handleResize = useCallback(() => {
     setWidth(window.innerWidth);
-    setHeight(window.innerHeight);
-  }, []);
+    setHeight(vh * 100); // Use the mobile viewport height
+  }, [vh]);
 
   // Calculate optimal PDF size for presenter notes
   const getOptimalPdfSize = useCallback(() => {
     const screenAspectRatio = width / height;
-    
+
     // Presenter notes are typically in portrait orientation (9:16 aspect ratio)
     const pdfAspectRatio = 9 / 16;
     let pdfWidth, pdfHeight;
@@ -90,8 +92,10 @@ const PresenterNotes = ({ _presenterNotesUrl, currentFrame, totalFrames }: Prese
   useEffect(() => {
     handleResize();
     window.addEventListener("resize", handleResize);
+    window.addEventListener("orientationchange", handleResize);
     return () => {
       window.removeEventListener("resize", handleResize);
+      window.removeEventListener("orientationchange", handleResize);
     };
   }, [handleResize]);
 

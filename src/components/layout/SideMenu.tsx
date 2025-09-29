@@ -61,7 +61,7 @@ export default function SideMeny({}: {}) {
                 leaveFrom="opacity-100 ltr:translate-x-0 rtl:translate-x-0"
                 leaveTo="opacity-0 ltr:-translate-x-12 rtl:translate-x-12"
               >
-                <Dialog.Panel className="flex h-screen w-4/6 transform flex-col bg-card px-4 pt-6 pb-4 shadow-xl transition-all ltr:rounded-r-lg rtl:rounded-l-lg">
+                <Dialog.Panel className="bg-card flex h-screen w-4/6 transform flex-col px-4 pt-6 pb-4 shadow-xl transition-all ltr:rounded-r-lg rtl:rounded-l-lg">
                   {user ? (
                     <div className="flex w-full flex-col items-center justify-center">
                       <Image
@@ -73,10 +73,10 @@ export default function SideMeny({}: {}) {
                         className="rounded-lg border-2"
                       />
 
-                      <div className="my-2 text-2xl font-semibold text-foreground">{(user?.name && `${user?.name}`) || user?.email}</div>
+                      <div className="text-foreground my-2 text-2xl font-semibold">{(user?.name && `${user?.name}`) || user?.email}</div>
                     </div>
                   ) : (
-                    <div className="flex w-full items-center justify-center pt-12 pb-8 text-xl text-foreground">
+                    <div className="text-foreground flex w-full items-center justify-center pt-12 pb-8 text-xl">
                       <Link href={`/auth/register?redirect=${router.asPath}`} className="pr-1 font-semibold">
                         {"Register"} /
                       </Link>
@@ -92,7 +92,7 @@ export default function SideMeny({}: {}) {
                       <Link
                         onClick={closeModal}
                         href={`/account`}
-                        className={`${"rounded-lg font-semibold text-foreground active:bg-accent active:text-accent-foreground"} rounded-mdclassName= group flex w-full items-center py-2 text-lg`}
+                        className={`${"text-foreground active:bg-accent active:text-accent-foreground rounded-lg font-semibold"} rounded-mdclassName= group flex w-full items-center py-2 text-lg`}
                       >
                         <FiUser className={`mx-2`} height={24} width={24} />
                         {"My account"}
@@ -107,7 +107,7 @@ export default function SideMeny({}: {}) {
                       <Link
                         onClick={closeModal}
                         href={`/admin/`}
-                        className={`${"rounded-lg font-semibold text-card-foreground active:bg-accent active:text-accent-foreground"} rounded-mdclassName= group flex w-full items-center py-2 text-lg`}
+                        className={`${"text-card-foreground active:bg-accent active:text-accent-foreground rounded-lg font-semibold"} rounded-mdclassName= group flex w-full items-center py-2 text-lg`}
                       >
                         <FiShield className={`mx-2`} height={24} width={24} />
                         {"Admin"}
@@ -122,7 +122,7 @@ export default function SideMeny({}: {}) {
                         closeModal();
                         await NAUTH_API.Client.Session.Revoke({});
                       }}
-                      className={`${"rounded-lg font-semibold text-foreground active:bg-accent active:text-accent-foreground"} rounded-mdclassName= group flex w-full items-center py-2 text-lg`}
+                      className={`${"text-foreground active:bg-accent active:text-accent-foreground rounded-lg font-semibold"} rounded-mdclassName= group flex w-full items-center py-2 text-lg`}
                     >
                       <BiLogOut className={`mx-2`} height={24} width={24} />
 
@@ -132,7 +132,7 @@ export default function SideMeny({}: {}) {
 
                   <Link
                     href={`/`}
-                    className={`${"rounded-lg font-semibold text-foreground active:bg-accent active:text-accent-foreground"} rounded-mdclassName= group flex w-full items-center py-2 text-lg`}
+                    className={`${"text-foreground active:bg-accent active:text-accent-foreground rounded-lg font-semibold"} rounded-mdclassName= group flex w-full items-center py-2 text-lg`}
                   >
                     <BiHome className={`mx-2`} height={24} width={24} />
 

@@ -1,5 +1,5 @@
 import { NAUTH_API } from "@/API/NAUTH/API";
-import { UserDTO } from "@/API/NAUTH/NauthApi_gen"; 
+import { UserDTO } from "@/API/NAUTH/NauthApi_gen";
 import useSWR from "swr";
 
 type UserSWRData = Awaited<ReturnType<typeof NAUTH_API.Client.User.CurrentUser>>;

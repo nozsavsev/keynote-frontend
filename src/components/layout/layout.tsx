@@ -4,8 +4,7 @@ import { useRouter } from "next/router";
 import Footer from "./footer";
 import Navbar from "./navbar";
 import { usePresentorHub, useScreenHub, useSpectatorHub } from "@/hooks/keynote/keynoteRealtime";
-import { observer } from "mobx-react-lite"
-
+import { observer } from "mobx-react-lite";
 
 const Layout = observer(({ children }: any) => {
   const router = useRouter();
@@ -32,7 +31,7 @@ const Layout = observer(({ children }: any) => {
   return (
     <>
       {process.env.NODE_ENV == "development" && false && (
-        <div className="fixed backdrop-blur-sm bg-background/50 rounded-md p-2 bottom-10 right-10 z-[60] flex flex-col gap-2 items-start justify-start">
+        <div className="bg-background/50 fixed right-10 bottom-10 z-[60] flex flex-col items-start justify-start gap-2 rounded-md p-2 backdrop-blur-sm">
           <div className="block sm:hidden">sm</div>
           <div className="hidden sm:block md:hidden">md</div>
           <div className="hidden md:block lg:hidden">lg</div>
@@ -40,15 +39,21 @@ const Layout = observer(({ children }: any) => {
           <div className="hidden xl:block">2xl</div>
 
           <div className="flex items-center justify-center gap-2">
-            <div className={`w-2 h-2 rounded-full ${PresentorHub.connectionState == "connected" ? "bg-green-500" : PresentorHub.connectionState == "connecting" ? "bg-yellow-500" : "bg-red-500"}`} />
+            <div
+              className={`h-2 w-2 rounded-full ${PresentorHub.connectionState == "connected" ? "bg-green-500" : PresentorHub.connectionState == "connecting" ? "bg-yellow-500" : "bg-red-500"}`}
+            />
             PresentorHub: {PresentorHub.connectionState}
           </div>
           <div className="flex items-center justify-center gap-2">
-            <div className={`w-2 h-2 rounded-full ${ScreenHub.connectionState == "connected" ? "bg-green-500" : ScreenHub.connectionState == "connecting" ? "bg-yellow-500" : "bg-red-500"}`} />
+            <div
+              className={`h-2 w-2 rounded-full ${ScreenHub.connectionState == "connected" ? "bg-green-500" : ScreenHub.connectionState == "connecting" ? "bg-yellow-500" : "bg-red-500"}`}
+            />
             ScreenHub: {ScreenHub.connectionState}
           </div>
           <div className="flex items-center justify-center gap-2">
-            <div className={`w-2 h-2 rounded-full ${SpectatorHub.connectionState == "connected" ? "bg-green-500" : SpectatorHub.connectionState == "connecting" ? "bg-yellow-500" : "bg-red-500"}`} />
+            <div
+              className={`h-2 w-2 rounded-full ${SpectatorHub.connectionState == "connected" ? "bg-green-500" : SpectatorHub.connectionState == "connecting" ? "bg-yellow-500" : "bg-red-500"}`}
+            />
             SpectatorHub: {SpectatorHub.connectionState}
           </div>
         </div>
@@ -57,7 +62,7 @@ const Layout = observer(({ children }: any) => {
       {router.asPath.endsWith("_preview") ? (
         <>{children}</>
       ) : (
-        <div className="flex min-h-screen flex-col bg-background text-foreground">
+        <div className="bg-background text-foreground flex min-h-screen flex-col">
           {!noNav() && <Navbar />}
           <div className={`m-0 w-full shrink-0 flex-grow p-0 ${noNav() ? "flex items-center justify-center" : ""}`}>
             <div
@@ -66,8 +71,9 @@ const Layout = observer(({ children }: any) => {
                 noNav() && noFoot()
                   ? { minHeight: "100vh" }
                   : {
-                      maxWidth: (noNav() || noWidth()) ? 900000 :  (router.asPath.startsWith("/admin") && !router.asPath.endsWith("preview") ? 1600 : 1200),
-                      minHeight:noNav() ? '100vh' : "calc(100vh - 64px)",
+                      maxWidth:
+                        noNav() || noWidth() ? 900000 : router.asPath.startsWith("/admin") && !router.asPath.endsWith("preview") ? 1600 : 1200,
+                      minHeight: noNav() ? "100vh" : "calc(100vh - 64px)",
                     }
               }
             >

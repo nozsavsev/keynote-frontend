@@ -4,6 +4,7 @@ import { useState, useEffect, useCallback, memo } from "react";
 import { Button } from "@/components/ui/button";
 import { Monitor, Smartphone } from "lucide-react";
 import { Document as ReactPDFDocument, Page as ReactPDFPage } from "react-pdf";
+import { useViewportHeight } from "@/hooks/useViewportHeight";
 
 import dynamic from "next/dynamic";
 
@@ -18,6 +19,7 @@ interface SpectatorNotesProps {
 }
 
 const SpectatorNotes = ({ _keynoteUrl, _mobileKeynoteUrl, currentFrame, totalFrames }: SpectatorNotesProps) => {
+  const vh = useViewportHeight();
   const [viewMode, setViewMode] = useState<"main" | "spectator">("spectator");
   const [totalPages, setTotalPages] = useState(0);
   const [pagesLoaded, setPagesLoaded] = useState<Set<number>>(new Set());
@@ -68,8 +70,8 @@ const SpectatorNotes = ({ _keynoteUrl, _mobileKeynoteUrl, currentFrame, totalFra
 
   const handleResize = useCallback(() => {
     setWidth(window.innerWidth);
-    setHeight(window.innerHeight);
-  }, []);
+    setHeight(vh * 100); // Use the mobile viewport height
+  }, [vh]);
 
   // Calculate optimal PDF size - prevent overflow
   const getOptimalPdfSize = useCallback(() => {
@@ -113,8 +115,10 @@ const SpectatorNotes = ({ _keynoteUrl, _mobileKeynoteUrl, currentFrame, totalFra
   useEffect(() => {
     handleResize();
     window.addEventListener("resize", handleResize);
+    window.addEventListener("orientationchange", handleResize);
     return () => {
       window.removeEventListener("resize", handleResize);
+      window.removeEventListener("orientationchange", handleResize);
     };
   }, [handleResize]);
 

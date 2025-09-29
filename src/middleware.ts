@@ -128,7 +128,10 @@ export async function middleware(request: NextRequest) {
           .map((r) => r.permission);
 
         const redirectUrl = process.env.CURRENT_FRONTEND_BASE + pathname + request.nextUrl.search;
-        const targetUrl = process.env.NAUTH_FRONTEND_BASE + `/auth/verificationExplainer?pageAccess=true&required=${failedPermissions?.join(",")}&redirect=` + encodeURIComponent(redirectUrl);
+        const targetUrl =
+          process.env.NAUTH_FRONTEND_BASE +
+          `/auth/verificationExplainer?pageAccess=true&required=${failedPermissions?.join(",")}&redirect=` +
+          encodeURIComponent(redirectUrl);
         return NextResponse.rewrite(new URL(targetUrl, request.url));
       }
 

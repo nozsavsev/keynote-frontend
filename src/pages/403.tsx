@@ -7,12 +7,12 @@ const Er_403 = ({}: any) => {
   const router = useRouter();
 
   return (
-    <div className="flex h-screen w-full flex-col items-center justify-center text-foreground">
-      <div className="text-7xl font-bold text-destructive">
+    <div className="text-foreground flex h-screen w-full flex-col items-center justify-center">
+      <div className="text-destructive text-7xl font-bold">
         <FaUserShield className="h-16 w-16" />
       </div>
       <h1 className="mt-4 text-3xl font-semibold">Access Denied</h1>
-      <p className="mt-2 text-lg text-muted-foreground">You do not have permission to view this page.</p>
+      <p className="text-muted-foreground mt-2 text-lg">You do not have permission to view this page.</p>
       <div className="mt-6 flex space-x-4">
         <Button onClick={() => router.back()}>Back</Button>
         <Button asChild>

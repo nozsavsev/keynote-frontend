@@ -5,9 +5,7 @@
   "scripts": {
     "dev": "cross-env NODE_TLS_REJECT_UNAUTHORIZED=0 next dev",
     "build": "next build",
-    "start": "next start",
-    "lint": "biome check",
-    "format": "biome format --write"
+    "start": "next start"
   },
   "dependencies": {
     "@faker-js/faker": "^10.0.0",
