@@ -28,8 +28,51 @@ export default function Home() {
 
   return (
     <div className="bg-background text-foreground min-h-screen">
+      {/* Hero Section */}
+      <section className="relative overflow-hidden">
+        <div className="container mx-auto px-6 py-20 lg:py-32">
+          <div className="mx-auto max-w-4xl text-center">
+            <div className="text-primary mb-8 inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-medium">
+              <Zap className="h-4 w-4" />
+              Real-time PDF Presentations
+            </div>
+
+            <h1 className="from-foreground to-muted-foreground mb-6 bg-gradient-to-r bg-clip-text text-5xl font-bold text-transparent lg:text-7xl">
+              Transform Your
+              <span className="text-primary block">Presentations</span>
+            </h1>
+
+            <p className="text-muted-foreground mx-auto mb-8 max-w-3xl text-xl leading-relaxed lg:text-2xl">
+              Upload PDFs, present in real-time, and engage your audience like never before. Remote control, mobile viewing, and interactive features
+              that boost engagement.
+            </p>
+
+            <div className="text-muted-foreground flex flex-wrap justify-center gap-8 text-sm">
+              <div className="flex items-center gap-2">
+                <CheckCircle className="text-success h-4 w-4" />
+                No software installation
+              </div>
+              <div className="flex items-center gap-2">
+                <CheckCircle className="text-success h-4 w-4" />
+                Works on any device
+              </div>
+              <div className="flex items-center gap-2">
+                <CheckCircle className="text-success h-4 w-4" />
+                Real-time synchronization
+              </div>
+            </div>
+
+            <div className="bg-secondary/20 border-border/50 mt-8 rounded-lg border p-4">
+              <p className="text-muted-foreground text-sm">
+                <strong>Note:</strong> A Nauth account is required to use Keynote. Sign in with your existing Nauth credentials or create a new
+                account to get started.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
       {/* Action Buttons Section */}
-      <section className="bg-background py-12">
+      <section className="bg-background pb-12">
         <div className="container mx-auto px-6">
           <div className="mb-8 text-center">
             <h2 className="mb-3 text-2xl font-bold lg:text-3xl">
@@ -100,51 +143,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
-      {/* Hero Section */}
-      <section className="relative overflow-hidden">
-        <div className="container mx-auto px-6 py-20 lg:py-32">
-          <div className="mx-auto max-w-4xl text-center">
-            <div className="text-primary mb-8 inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-medium">
-              <Zap className="h-4 w-4" />
-              Real-time PDF Presentations
-            </div>
-
-            <h1 className="from-foreground to-muted-foreground mb-6 bg-gradient-to-r bg-clip-text text-5xl font-bold text-transparent lg:text-7xl">
-              Transform Your
-              <span className="text-primary block">Presentations</span>
-            </h1>
-
-            <p className="text-muted-foreground mx-auto mb-8 max-w-3xl text-xl leading-relaxed lg:text-2xl">
-              Upload PDFs, present in real-time, and engage your audience like never before. Remote control, mobile viewing, and interactive features
-              that boost engagement.
-            </p>
-
-            <div className="text-muted-foreground flex flex-wrap justify-center gap-8 text-sm">
-              <div className="flex items-center gap-2">
-                <CheckCircle className="text-success h-4 w-4" />
-                No software installation
-              </div>
-              <div className="flex items-center gap-2">
-                <CheckCircle className="text-success h-4 w-4" />
-                Works on any device
-              </div>
-              <div className="flex items-center gap-2">
-                <CheckCircle className="text-success h-4 w-4" />
-                Real-time synchronization
-              </div>
-            </div>
-
-            <div className="bg-secondary/20 border-border/50 mt-8 rounded-lg border p-4">
-              <p className="text-muted-foreground text-sm">
-                <strong>Note:</strong> A Nauth account is required to use Keynote. Sign in with your existing Nauth credentials or create a new
-                account to get started.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* Features Section */}
       <section className="py-16">
         <div className="container mx-auto px-6">

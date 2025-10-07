@@ -64,6 +64,10 @@ type PageProps = {
   clientConfig: AppENVConfigType;
 };
 
+if(typeof window !== "undefined")
+  //@ts-ignore
+  window.noRedirects = true;
+
 type AppPropsWithSSRUser = AppProps<PageProps>;
 
 // ============================================================================
@@ -182,6 +186,7 @@ const AppToastContainer = () => (
 );
 
 const AppProviders = ({ children, nauthUser, keynoteUser }: { children: React.ReactNode; nauthUser: any; keynoteUser: any }) => (
+
   <NauthUserContext.Provider value={nauthUser}>
     <KeynoteUserContext.Provider value={keynoteUser}>
       <NauthRealtimeProvider>
