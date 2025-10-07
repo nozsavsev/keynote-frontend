@@ -64,10 +64,6 @@ type PageProps = {
   clientConfig: AppENVConfigType;
 };
 
-if(typeof window !== "undefined")
-  //@ts-ignore
-  window.noRedirects = true;
-
 type AppPropsWithSSRUser = AppProps<PageProps>;
 
 // ============================================================================
