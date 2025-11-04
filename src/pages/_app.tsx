@@ -149,12 +149,12 @@ const AppHead = () => (
   <Head>
     <title>Keyn0te</title>
     <link rel="icon" href="/faviconDark.svg" />
-    <meta name="description" content="A secure and modern authentication platform." />
+    <meta name="description" content="Present like never before." />
 
     {/* Open Graph / Facebook */}
     <meta property="og:type" content="website" />
     <meta property="og:title" content="Keyn0te" />
-    <meta property="og:description" content="A secure and modern authentication platform." />
+    <meta property="og:description" content="Present like never before." />
     <meta property="og:site_name" content="Keyn0te" />
     <meta property="og:image" content="/banner_dark.svg" />
 
